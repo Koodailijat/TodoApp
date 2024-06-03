@@ -1,3 +1,2 @@
-# Shoppinglist application
-
+# Blueprint project for cloning
 
