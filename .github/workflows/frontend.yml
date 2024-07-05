@@ -20,8 +20,11 @@ jobs:
       - name: Run Vitest
         run: yarn test
   # ESLINT JOB
-  frontendlint:
+  lint:
     runs-on: ubuntu-latest
+    defaults:
+        run:
+          working-directory: './frontend'
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
