@@ -3,7 +3,8 @@ const config = {
     tabWidth: 4,
     semi: true,
     singleQuote: true,
-    endOfLine: "crlf"
+    endOfLine: "crlf",
+    plugins: ["prettier-plugin-tailwindcss"]
 };
 
 module.exports = config;

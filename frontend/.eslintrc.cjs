@@ -10,13 +10,14 @@ module.exports = {
         'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:prettier/recommended',
+        'plugin:tailwindcss/recommended'
     ],
     overrides: [
         {
             env: {
                 node: true,
             },
-            files: ['.eslintrc.{js,cjs}'],
+            files: ['.eslintrc.{js,cjs}', 'frontend/**/*.js'],
             parserOptions: {
                 sourceType: 'script',
             },
@@ -27,14 +28,17 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
         project: './tsconfig.json',
+        tsconfigRootDir: __dirname,
     },
     plugins: ['@typescript-eslint', 'react', 'prettier', 'import'],
     rules: {
         'react/react-in-jsx-scope': 'off',
         'linebreak-style': ['error', 'windows'],
-        indent: ['error', 4],
+        'indent': ['error', 4],
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
-        'import/no-extraneous-dependencies': ["error", {"devDependencies": true}]
+        'import/no-extraneous-dependencies': ["error", {"devDependencies": true}],
+        "import/extensions": [ "error", "ignorePackages", { "": "never" } ]
     },
+    ignorePatterns: ["src/__tests__/*", "src/components/ui"], // <<< ignore all files in test folder
 };
