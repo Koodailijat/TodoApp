@@ -32,7 +32,9 @@
   "include": [
     "vite.config.ts",
     ".eslintrc.cjs",
-    "./src"
+    "src",
+    "./src/__tests__"
   ],
+  "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json"}]
 }

@@ -11,16 +11,10 @@ import {
     UserIcon,
     UserRoundPlus,
 } from 'lucide-react';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Button } from '@/components/ui/button.tsx';
 import { NavBarContext, UserContext } from '@/routes/root/root.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from '@/components/ui/tooltip.tsx';
 import TooltipHelper from '@/lib/TooltipHelper.tsx';
 
 interface NotLoggedInSideBarProps {
