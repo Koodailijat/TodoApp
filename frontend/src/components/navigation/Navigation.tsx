@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { useContext, useState } from 'react';
 import { Button } from '@/components/ui/button.tsx';
-import { UserContext } from '@/routes/root/root.tsx';
+import { NavBarContext, UserContext } from '@/routes/root/root.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import {
     Tooltip,
@@ -114,8 +114,8 @@ function LoggedInSideBar({ isOpen, isOpenWidth }: LoggedInSideBarProps) {
 }
 
 export default function Navigation() {
-    const [isOpen, setIsOpen] = useState(true);
-    const isOpenStyling = isOpen ? 'w-72 p-2' : 'w-18 p-2';
+    const { isOpen, setIsOpen } = useContext(NavBarContext);
+    const isOpenStyling = isOpen ? 'w-64 p-2' : ' w-20 p-2';
     const isOpenWidth = isOpen ? 'w-6/12' : '';
     const { loggedIn } = useContext(UserContext);
 
@@ -132,19 +132,9 @@ export default function Navigation() {
                     </Button>
                 </TooltipHelper>
             </div>
-            <div className="flex items-center justify-center">
-                <Link
-                    to="/"
-                    className="flex items-center justify-center gap-2 text-3xl">
-                    {isOpen ? (
-                        <>
-                            <ListTodo />
-                            <h1>Todo App</h1>
-                        </>
-                    ) : (
-                        <ListTodo />
-                    )}
-                </Link>
+            <div className="flex items-center justify-center gap-2">
+                <ListTodo />
+                {isOpen && <h1 className="text-3xl">Todo App</h1>}
             </div>
             <Separator />
             <div className="flex w-full flex-col gap-4 text-center">
