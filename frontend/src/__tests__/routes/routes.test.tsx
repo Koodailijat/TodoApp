@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, it } from 'vitest';
 import { getByRole, getByText, render } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import Root from '../../routes/root/root';
