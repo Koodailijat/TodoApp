@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getByRole, render } from '@testing-library/react';
+import { getByRole, getByText, render } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import Root from '../../routes/root/root';
 import ErrorPage from '../../routes/error-page/error-page';
@@ -18,10 +18,7 @@ describe('Root', () => {
         });
         const { container } = render(<RouterProvider router={router} />);
 
-        expect(
-            getByRole(container, 'heading', { name: 'Hello world!' })
-                .textContent
-        ).toBeDefined();
+        expect(getByText(container, 'Todo App')).toBeDefined();
     });
 });
 

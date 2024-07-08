@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button.tsx';
 import { useContext } from 'react';
+import { Button } from '@/components/ui/button.tsx';
 import { UserContext } from '@/routes/root/root.tsx';
 
 export default function Login() {

@@ -1,3 +1,4 @@
+
 module.exports = {
     env: {
         browser: true,
@@ -40,5 +41,8 @@ module.exports = {
         'import/no-extraneous-dependencies': ["error", {"devDependencies": true}],
         "import/extensions": [ "error", "ignorePackages", { "": "never" } ]
     },
-    ignorePatterns: ["src/__tests__/*", "src/components/ui"], // <<< ignore all files in test folder
+    ignorePatterns: ["src/__tests__/*", "src/components/ui/*"], // <<< ignore all files in test folder
+    globals: {
+        "vitest": true
+    },
 };
