@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import { createContext, useMemo, useState } from 'react';
-import Navigation from '@/components/navigation/Navigation.tsx';
+import SideNav from '@/components/navigation/SideNav.tsx';
 
-interface UserContextTypes {
+export interface UserContextTypes {
     loggedIn: boolean;
-    setLoggedIn: (value: ((prevState: boolean) => boolean) | boolean) => void;
+    setLoggedIn: (args: boolean) => void;
 }
 
-interface NavBarContextTypes {
+export interface NavBarContextTypes {
     isOpen: boolean;
     setIsOpen: (value: ((prevState: boolean) => boolean) | boolean) => void;
 }
@@ -30,7 +30,7 @@ export default function Root() {
     return (
         <UserContext.Provider value={userValue}>
             <NavBarContext.Provider value={isOpenValue}>
-                <Navigation />
+                <SideNav />
                 <Outlet />
             </NavBarContext.Provider>
         </UserContext.Provider>
