@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { createContext, useMemo, useState } from 'react';
 import SideNav from '@/components/navigation/SideNav.tsx';
+import { ThemeProvider } from '@/components/theme-provider.tsx';
 
 export interface UserContextTypes {
     loggedIn: boolean;
@@ -28,11 +29,13 @@ export default function Root() {
     const isOpenValue = useMemo(() => ({ isOpen, setIsOpen }), [isOpen]);
 
     return (
-        <UserContext.Provider value={userValue}>
-            <NavBarContext.Provider value={isOpenValue}>
-                <SideNav />
-                <Outlet />
-            </NavBarContext.Provider>
-        </UserContext.Provider>
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+            <UserContext.Provider value={userValue}>
+                <NavBarContext.Provider value={isOpenValue}>
+                    <SideNav />
+                    <Outlet />
+                </NavBarContext.Provider>
+            </UserContext.Provider>
+        </ThemeProvider>
     );
 }
