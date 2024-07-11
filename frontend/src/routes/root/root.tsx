@@ -7,12 +7,10 @@ export interface UserContextTypes {
     loggedIn: boolean;
     setLoggedIn: (args: boolean) => void;
 }
-
 export interface NavBarContextTypes {
     isOpen: boolean;
     setIsOpen: (value: ((prevState: boolean) => boolean) | boolean) => void;
 }
-
 export const UserContext = createContext<UserContextTypes>({
     loggedIn: false,
     setLoggedIn: null,
