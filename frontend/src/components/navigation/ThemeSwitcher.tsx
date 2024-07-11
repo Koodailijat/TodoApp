@@ -44,7 +44,7 @@ export default function ThemeSwitcher({ isOpen }: ThemeSwitcherProps) {
                 )}
                 {theme === 'light' && (
                     <TooltipHelper tooltip={<p>Toggle dark mode</p>}>
-                        <Button onClick={() => setTheme(Theme)} size="icon">
+                        <Button onClick={() => setTheme('dark')} size="icon">
                             <Moon />
                         </Button>
                     </TooltipHelper>
