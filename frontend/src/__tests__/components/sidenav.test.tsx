@@ -1,13 +1,4 @@
-import {
-    findByRole,
-    getByLabelText,
-    getByRole,
-    getByText,
-    queryAllByRole,
-    queryAllByText,
-    queryByRole,
-    screen,
-} from '@testing-library/react';
+import { queryAllByRole, screen } from '@testing-library/react';
 import SideNav from '@/components/navigation/SideNav.tsx';
 import WrapWithRouterAndContext from '@/__tests__/testhelpers/WrapWithRouterAndContext.tsx';
 import { userEvent } from '@testing-library/user-event';

@@ -7,7 +7,6 @@ export default function Login() {
     const { loggedIn, setLoggedIn } = useContext(UserContext);
     return (
         <PageView>
-            <h1>TEST</h1>
             <Button onClick={() => setLoggedIn(!loggedIn)}>Login</Button>
         </PageView>
     );

@@ -5,37 +5,35 @@ import { Separator } from '@/components/ui/separator.tsx';
 
 interface NotLoggedInSideNavProps {
     isOpen: boolean;
-    isOpenWidth: string;
 }
 
 export default function NotLoggedInSideNav({
     isOpen,
-    isOpenWidth,
 }: NotLoggedInSideNavProps) {
     return (
         <>
             <div className="flex items-center justify-center gap-2">
                 <TooltipHelper tooltip={<p>Login</p>}>
                     <Link
-                        className={`flex items-center justify-center gap-2 rounded-lg p-2 hover:bg-primary hover:text-secondary ${isOpenWidth}`}
+                        className="flex w-8/12 items-center justify-center gap-2 rounded-lg p-2 hover:bg-primary hover:text-secondary"
                         to="/login">
                         <LogIn />
                         {isOpen ? 'Login' : ''}
                     </Link>
                 </TooltipHelper>
             </div>
-            <Separator />
+            <Separator className="bg-gray-400" />
             <div className="flex w-full flex-col items-center justify-center gap-2">
                 <TooltipHelper tooltip={<p>Register</p>}>
                     <Link
-                        className={`flex items-center justify-center gap-2 rounded-lg p-2 hover:bg-primary hover:text-secondary ${isOpenWidth}`}
+                        className="flex w-8/12 items-center justify-center gap-2 rounded-lg p-2 hover:bg-primary hover:text-secondary"
                         to="/">
                         <UserRoundPlus />
                         {isOpen ? 'Register' : ''}
                     </Link>
                 </TooltipHelper>
             </div>
-            <Separator />
+            <Separator className="bg-gray-400" />
         </>
     );
 }

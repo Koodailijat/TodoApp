@@ -1,8 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import { ReactNode } from 'react';
 import { NavBarContext, UserContext } from '@/routes/root/root.tsx';
-import SideNav from '@/components/navigation/SideNav.tsx';
 
 interface WrapWithRouterAndContextProps {
     children: any;
@@ -14,6 +12,7 @@ export default function WrapWithRouterAndContext({
     children,
     isOpen,
     loggedIn,
+    theme,
 }: WrapWithRouterAndContextProps) {
     return render(
         <BrowserRouter>
