@@ -62,4 +62,19 @@ describe('SideNav', () => {
             }).length
         ).toBe(0);
     });
+
+    it('Should render theme toggler', () => {
+        type Theme = 'dark' | 'light' | 'system';
+        let loggedIn = false;
+        let isOpen = true;
+        let theme: Theme = 'light';
+        const { container } = WrapWithRouterAndContext({
+            children: <SideNav />,
+            isOpen,
+            loggedIn,
+            theme,
+        });
+
+        expect(screen.getByRole('button', { name: 'Switch to dark mode' }));
+    });
 });
