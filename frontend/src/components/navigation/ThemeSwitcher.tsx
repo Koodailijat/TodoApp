@@ -1,7 +1,8 @@
+import { Moon, Sun } from 'lucide-react';
 import TooltipHelper from '@/lib/TooltipHelper.tsx';
 import { Button } from '@/components/ui/button.tsx';
-import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/components/theme-provider.tsx';
+
 interface ThemeSwitcherProps {
     isOpen: boolean;
 }

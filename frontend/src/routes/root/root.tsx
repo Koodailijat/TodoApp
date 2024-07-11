@@ -2,8 +2,6 @@ import { Outlet } from 'react-router-dom';
 import { createContext, useMemo, useState } from 'react';
 import SideNav from '@/components/navigation/SideNav.tsx';
 import { ThemeProvider } from '@/components/theme-provider.tsx';
-import PageView from '@/components/views/PageView.tsx';
-
 export interface UserContextTypes {
     loggedIn: boolean;
     setLoggedIn: (args: boolean) => void;

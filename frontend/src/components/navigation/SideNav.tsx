@@ -4,8 +4,6 @@ import {
     ArrowRightToLine,
     Home,
     ListTodo,
-    Moon,
-    Sun,
 } from 'lucide-react';
 import { useContext } from 'react';
 import { Button } from '@/components/ui/button.tsx';
@@ -23,8 +21,6 @@ export default function SideNav() {
         ? 'w-60 p-2 aria-expanded:true'
         : 'w-20 p-2 aria-expanded:false';
     const { loggedIn } = useContext(UserContext);
-    const { theme } = useTheme();
-    const darkMode = theme === 'dark';
 
     return (
         <div

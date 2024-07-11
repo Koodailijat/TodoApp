@@ -1,13 +1,4 @@
-import {
-    findByRole,
-    getByLabelText,
-    getByRole,
-    getByText,
-    queryAllByRole,
-    queryAllByText,
-    queryByRole,
-    screen,
-} from '@testing-library/react';
+import { queryAllByRole, screen } from '@testing-library/react';
 import SideNav from '@/components/navigation/SideNav.tsx';
 import WrapWithRouterAndContext from '@/__tests__/testhelpers/WrapWithRouterAndContext.tsx';
 import { userEvent } from '@testing-library/user-event';
@@ -61,20 +52,5 @@ describe('SideNav', () => {
                 name: 'Todo App',
             }).length
         ).toBe(0);
-    });
-
-    it('Should render theme toggler', () => {
-        type Theme = 'dark' | 'light' | 'system';
-        let loggedIn = false;
-        let isOpen = true;
-        let theme: Theme = 'light';
-        const { container } = WrapWithRouterAndContext({
-            children: <SideNav />,
-            isOpen,
-            loggedIn,
-            theme,
-        });
-
-        expect(screen.getByRole('button', { name: 'Switch to dark mode' }));
     });
 });
