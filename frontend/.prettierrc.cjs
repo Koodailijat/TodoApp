@@ -4,6 +4,7 @@ const config = {
     semi: true,
     singleQuote: true,
     endOfLine: "crlf",
+    bracketSameLine: true,
     plugins: ["prettier-plugin-tailwindcss"]
 };
 
