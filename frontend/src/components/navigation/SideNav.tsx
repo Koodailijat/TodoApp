@@ -12,7 +12,6 @@ import { Separator } from '@/components/ui/separator.tsx';
 import TooltipHelper from '@/lib/TooltipHelper.tsx';
 import LoggedInSideNav from '@/components/navigation/LoggedInSideNav.tsx';
 import NotLoggedInSideNav from '@/components/navigation/NotLoggedInSideNav.tsx';
-import { useTheme } from '@/components/theme-provider.tsx';
 import ThemeSwitcher from '@/components/navigation/ThemeSwitcher.tsx';
 
 export default function SideNav() {
