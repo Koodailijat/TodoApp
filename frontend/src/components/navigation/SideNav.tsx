@@ -16,7 +16,7 @@ import NotLoggedInSideNav from '@/components/navigation/NotLoggedInSideNav.tsx';
 export default function SideNav() {
     const { isOpen, setIsOpen } = useContext(NavBarContext);
     const isOpenStyling = isOpen
-        ? 'w-64 p-2 aria-expanded:true'
+        ? 'w-60 p-2 aria-expanded:true'
         : ' w-20 p-2 aria-expanded:false';
     const isOpenWidth = isOpen ? 'w-6/12' : '';
     const { loggedIn } = useContext(UserContext);
