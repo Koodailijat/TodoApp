@@ -39,7 +39,8 @@ module.exports = {
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
         'import/no-extraneous-dependencies': ["error", {"devDependencies": true}],
-        "import/extensions": [ "error", "ignorePackages", { "": "never" } ]
+        "import/extensions": [ "error", "ignorePackages", { "": "never" } ],
+        "react/jsx-props-no-spreading": "off",
     },
     ignorePatterns: ["src/__tests__/*", "src/components/ui/*", "*.config.js"], // <<< ignore all files in test folder
     globals: {

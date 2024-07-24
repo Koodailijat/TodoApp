@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { useContext } from 'react';
 import { Button } from '@/components/ui/button.tsx';
-import { NavBarContext, UserContext } from '@/routes/root/root.tsx';
+import { NavBarContext, UserContext } from '@/routes/root/Root.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import TooltipHelper from '@/lib/TooltipHelper.tsx';
 import LoggedInSideNav from '@/components/navigation/LoggedInSideNav.tsx';
