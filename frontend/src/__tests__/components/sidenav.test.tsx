@@ -1,7 +1,6 @@
 import { queryAllByRole, screen } from '@testing-library/react';
 import SideNav from '@/components/navigation/SideNav.tsx';
 import WrapWithRouterAndContext from '@/__tests__/testhelpers/WrapWithRouterAndContext.tsx';
-import { userEvent } from '@testing-library/user-event';
 
 describe('SideNav', () => {
     it('Should render right elements when user not logged in', () => {
@@ -16,7 +15,7 @@ describe('SideNav', () => {
         expect(screen.getByRole('heading', { name: 'Todo App' })).toBeDefined();
         expect(screen.getByRole('link', { name: 'Home' })).toBeDefined();
         expect(screen.getByRole('link', { name: 'Login' })).toBeDefined();
-        expect(screen.getByRole('link', { name: 'Register' })).toBeDefined();
+        expect(screen.getByRole('link', { name: 'Sign Up' })).toBeDefined();
     });
 
     it('Should render right elements when user is logged in', () => {
@@ -36,8 +35,7 @@ describe('SideNav', () => {
         expect(screen.getByRole('link', { name: 'Logout' })).toBeDefined();
     });
 
-    it('Should collapse navbar and display only ', async () => {
-        const user = userEvent.setup();
+    it('Should collapse navbar and display only icons', async () => {
         let loggedIn = false;
         let isOpen = false;
 

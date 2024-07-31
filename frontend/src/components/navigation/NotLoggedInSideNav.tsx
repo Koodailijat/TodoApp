@@ -27,9 +27,9 @@ export default function NotLoggedInSideNav({
                 <TooltipHelper tooltip={<p>Register</p>}>
                     <Link
                         className="flex w-8/12 items-center justify-center gap-2 rounded-lg p-2 hover:bg-primary hover:text-secondary"
-                        to="/">
+                        to="/signup">
                         <UserRoundPlus />
-                        {isOpen ? 'Register' : ''}
+                        {isOpen ? 'Sign Up' : ''}
                     </Link>
                 </TooltipHelper>
             </div>

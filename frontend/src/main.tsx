@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/_config.scss';
 import './styles/defaults.scss';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Root from './routes/root/root.tsx';
-import ErrorPage from './routes/error-page/error-page.tsx';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import Root from './routes/root/Root.tsx';
+
 import Login from '@/routes/login/Login.tsx';
+import ErrorPage from '@/routes/error-page/ErrorPage.tsx';
+import LoginEmail from '@/routes/login/loginemail/LoginEmail.tsx';
+import SignUp from '@/routes/register/SignUp.tsx';
 
 const router = createBrowserRouter([
     {
@@ -15,7 +18,27 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/login',
-                element: <Login />,
+                element: <Outlet />,
+                children: [
+                    {
+                        index: true,
+                        element: <Login />,
+                    },
+                    {
+                        path: 'email',
+                        element: <LoginEmail />,
+                    },
+                ],
+            },
+            {
+                path: '/signup',
+                element: <Outlet />,
+                children: [
+                    {
+                        index: true,
+                        element: <SignUp />,
+                    },
+                ],
             },
         ],
     },

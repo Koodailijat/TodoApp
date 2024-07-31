@@ -13,11 +13,12 @@ export interface NavBarContextTypes {
 }
 export const UserContext = createContext<UserContextTypes>({
     loggedIn: false,
-    setLoggedIn: null,
+    setLoggedIn: () => {},
 });
+
 export const NavBarContext = createContext<NavBarContextTypes>({
     isOpen: true,
-    setIsOpen: null,
+    setIsOpen: () => {},
 });
 export default function Root() {
     const [loggedIn, setLoggedIn] = useState(false);
