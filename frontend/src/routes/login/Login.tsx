@@ -16,6 +16,8 @@ import {
     FormMessage,
 } from '@/components/ui/form.tsx';
 import { emailSchema } from '@/lib/schemas/userFormSchema.ts';
+import { Mail } from 'lucide-react';
+import { IconField } from '@/components/iconfield/IconField.tsx';
 
 export default function Login() {
     const [email] = useState<string>('');
@@ -57,7 +59,9 @@ export default function Login() {
                                     <FormItem className="max-h-28 min-h-28 w-full pb-4">
                                         <FormLabel>Email</FormLabel>
                                         <FormControl>
-                                            <Input
+                                            <IconField
+                                                icon={<Mail />}
+                                                type="email"
                                                 placeholder="Email"
                                                 {...field}
                                             />

@@ -11,7 +11,7 @@ const IconField = React.forwardRef<HTMLInputElement, InputProps>(
     ({ className, type, icon, ...props }, ref) => {
         return (
             <div className="relative">
-                <div className="absolute left-2 top-1/2 size-5 -translate-y-1/2">
+                <div className="absolute left-2 top-1/2 size-5 -translate-y-3">
                     {icon}
                 </div>
                 <input

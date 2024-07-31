@@ -3,9 +3,9 @@ import { useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Lock, Mail } from 'lucide-react';
 import PageView from '@/components/views/PageView.tsx';
 import { Button } from '@/components/ui/button.tsx';
-import { Input } from '@/components/ui/input.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import { loginEmailSchema } from '@/lib/schemas/userFormSchema.ts';
 import {
@@ -16,6 +16,7 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form.tsx';
+import { IconField } from '@/components/iconfield/IconField.tsx';
 
 export default function LoginEmail() {
     const enteredEmail = useLocation().state.values.email;
@@ -31,8 +32,10 @@ export default function LoginEmail() {
         },
     });
 
+    // @ts-expect-error not implemented yet
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log('LOGIN', values);
+        // Send login
     }
 
     return (
@@ -40,7 +43,7 @@ export default function LoginEmail() {
             <div className="flex size-full items-center justify-center">
                 <div className="flex w-96 flex-col items-center justify-center gap-6 rounded-lg bg-secondary p-12">
                     <div className="h-full">
-                        <h1 className="text-4xl">Login with email</h1>
+                        <h1 className="text-3xl">Login with email</h1>
                     </div>
                     <Separator className="bg-border" />
                     <Form {...loginForm}>
@@ -55,7 +58,9 @@ export default function LoginEmail() {
                                         <FormItem className="max-h-28 min-h-28 w-full">
                                             <FormLabel>Email</FormLabel>
                                             <FormControl>
-                                                <Input
+                                                <IconField
+                                                    icon={<Mail />}
+                                                    type="email"
                                                     placeholder="Email"
                                                     {...field}
                                                 />
@@ -71,7 +76,8 @@ export default function LoginEmail() {
                                         <FormItem className="max-h-28 min-h-28 w-full">
                                             <FormLabel>Password</FormLabel>
                                             <FormControl>
-                                                <Input
+                                                <IconField
+                                                    icon={<Lock />}
                                                     type="password"
                                                     placeholder="Password"
                                                     {...field}

@@ -31,8 +31,10 @@ export default function SignUp() {
         },
     });
 
+    // @ts-expect-error not implemented yet
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log('SIGNUP', values);
+        // Send signup
     }
 
     return (
@@ -77,7 +79,7 @@ export default function SignUp() {
                                                 <FormControl>
                                                     <IconField
                                                         icon={<User />}
-                                                        placeholder="First name"
+                                                        placeholder="Last name"
                                                         {...field}
                                                     />
                                                 </FormControl>
