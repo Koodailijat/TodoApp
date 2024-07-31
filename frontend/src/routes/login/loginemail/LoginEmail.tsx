@@ -40,9 +40,9 @@ export default function LoginEmail() {
             <div className="flex size-full items-center justify-center">
                 <div className="flex w-96 flex-col items-center justify-center gap-6 rounded-lg bg-secondary p-12">
                     <div className="h-full">
-                        <h1 className="text-3xl">Login with email</h1>
+                        <h1 className="text-4xl">Login with email</h1>
                     </div>
-                    <Separator className="bg-primary" />
+                    <Separator className="bg-border" />
                     <Form {...loginForm}>
                         <form
                             className="flex size-full flex-col items-center justify-center gap-6"
