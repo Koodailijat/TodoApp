@@ -15,7 +15,7 @@ describe('SideNav', () => {
         expect(screen.getByRole('heading', { name: 'Todo App' })).toBeDefined();
         expect(screen.getByRole('link', { name: 'Home' })).toBeDefined();
         expect(screen.getByRole('link', { name: 'Login' })).toBeDefined();
-        expect(screen.getByRole('link', { name: 'Register' })).toBeDefined();
+        expect(screen.getByRole('link', { name: 'Sign Up' })).toBeDefined();
     });
 
     it('Should render right elements when user is logged in', () => {
