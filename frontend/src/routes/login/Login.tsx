@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button.tsx';
 import PageView from '@/components/views/PageView.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
-import { Input } from '@/components/ui/input.tsx';
+
 import {
     Form,
     FormControl,
@@ -16,7 +17,6 @@ import {
     FormMessage,
 } from '@/components/ui/form.tsx';
 import { emailSchema } from '@/lib/schemas/userFormSchema.ts';
-import { Mail } from 'lucide-react';
 import { IconField } from '@/components/iconfield/IconField.tsx';
 
 export default function Login() {
