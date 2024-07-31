@@ -1,7 +1,6 @@
 import { queryAllByRole, screen } from '@testing-library/react';
 import SideNav from '@/components/navigation/SideNav.tsx';
 import WrapWithRouterAndContext from '@/__tests__/testhelpers/WrapWithRouterAndContext.tsx';
-import { userEvent } from '@testing-library/user-event';
 
 describe('SideNav', () => {
     it('Should render right elements when user not logged in', () => {
@@ -36,8 +35,7 @@ describe('SideNav', () => {
         expect(screen.getByRole('link', { name: 'Logout' })).toBeDefined();
     });
 
-    it('Should collapse navbar and display only ', async () => {
-        const user = userEvent.setup();
+    it('Should collapse navbar and display only icons', async () => {
         let loggedIn = false;
         let isOpen = false;
 
