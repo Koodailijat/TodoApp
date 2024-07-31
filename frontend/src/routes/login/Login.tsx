@@ -15,12 +15,12 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form.tsx';
-import LoginFormSchema from '@/lib/schemas/loginFormSchema.ts';
+import { emailSchema } from '@/lib/schemas/userFormSchema.ts';
 
 export default function Login() {
     const [email] = useState<string>('');
     const navigate = useNavigate();
-    const formSchema = LoginFormSchema();
+    const formSchema = emailSchema();
 
     const loginForm = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -36,13 +36,11 @@ export default function Login() {
     return (
         <PageView>
             <div className="flex size-full items-center justify-center">
-                <div className="flex size-full flex-col items-center justify-center gap-12 bg-secondary p-12 md:h-4/6 md:w-96">
+                <div className="md: flex w-96 flex-col items-center justify-center gap-12 rounded-lg bg-secondary p-12">
                     <div className="">
                         <h1 className="text-3xl">Login</h1>
                     </div>
-                    <Button className="w-full md:w-4/5">
-                        Login using Google
-                    </Button>
+                    <Button className="w-full">Login using Google</Button>
                     <div className="flex w-2/5 items-center justify-center gap-4">
                         <Separator className="bg-primary" />
                         <h2 className="text-xl">Or</h2>
@@ -50,7 +48,7 @@ export default function Login() {
                     </div>
                     <Form {...loginForm}>
                         <form
-                            className="flex w-full flex-col items-center justify-center gap-2 md:w-4/5"
+                            className="flex w-full flex-col items-center justify-center gap-4"
                             onSubmit={loginForm.handleSubmit(onSubmit)}>
                             <FormField
                                 control={loginForm.control}
