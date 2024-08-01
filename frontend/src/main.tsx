@@ -7,8 +7,8 @@ import Root from './routes/root/Root.tsx';
 
 import Login from '@/routes/login/Login.tsx';
 import ErrorPage from '@/routes/error-page/ErrorPage.tsx';
-import LoginEmail from '@/routes/login/loginemail/LoginEmail.tsx';
-import SignUp from '@/routes/register/SignUp.tsx';
+import LoginUsername from '@/routes/login/loginusername/LoginUsername.tsx';
+import SignUp from '@/routes/signup/SignUp.tsx';
 
 const router = createBrowserRouter([
     {
@@ -25,8 +25,8 @@ const router = createBrowserRouter([
                         element: <Login />,
                     },
                     {
-                        path: 'email',
-                        element: <LoginEmail />,
+                        path: 'username',
+                        element: <LoginUsername />,
                     },
                 ],
             },

@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { setErrorMap, z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Contact, Lock, Mail, User } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { signUpWithEmailSchema } from '@/lib/schemas/userFormSchema.ts';
 import PageView from '@/components/views/PageView.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
@@ -15,10 +16,13 @@ import {
 } from '@/components/ui/form.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { IconField } from '@/components/iconfield/IconField.tsx';
+import { request } from '@/services/request.ts';
+import { useState } from 'react';
+import { AxiosError } from 'axios';
 
 export default function SignUp() {
     const formSchema = signUpWithEmailSchema();
-
+    const navigate = useNavigate();
     const signUpForm = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -31,10 +35,28 @@ export default function SignUp() {
         },
     });
 
-    // @ts-expect-error not implemented yet
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        // Send signup
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        try {
+            await request({
+                method: 'POST',
+                url: 'auth/signup',
+                data: {
+                    first_name: values.firstName,
+                    last_name: values.lastName,
+                    username: values.username,
+                    email: values.email,
+                    password: values.password,
+                },
+            });
+            navigate('/login/email');
+        } catch (error) {
+            if (error.response.data.statusCode === 409) {
+                signUpForm.setError(error.response.data.conflictedField, {
+                    type: 'custom',
+                    message: error.response.data.message,
+                });
+            }
+        }
     }
 
     return (
@@ -91,15 +113,14 @@ export default function SignUp() {
                                 <div className="flex gap-6">
                                     <FormField
                                         control={signUpForm.control}
-                                        name="email"
+                                        name="username"
                                         render={({ field }) => (
                                             <FormItem className="max-h-28 min-h-28 w-full">
-                                                <FormLabel>Email</FormLabel>
+                                                <FormLabel>Username</FormLabel>
                                                 <FormControl>
                                                     <IconField
-                                                        icon={<Mail />}
-                                                        type="email"
-                                                        placeholder="Email"
+                                                        icon={<Contact />}
+                                                        placeholder="Username"
                                                         {...field}
                                                     />
                                                 </FormControl>
@@ -109,14 +130,15 @@ export default function SignUp() {
                                     />
                                     <FormField
                                         control={signUpForm.control}
-                                        name="username"
+                                        name="email"
                                         render={({ field }) => (
                                             <FormItem className="max-h-28 min-h-28 w-full">
-                                                <FormLabel>Username</FormLabel>
+                                                <FormLabel>Email</FormLabel>
                                                 <FormControl>
                                                     <IconField
-                                                        icon={<Contact />}
-                                                        placeholder="Username"
+                                                        icon={<Mail />}
+                                                        type="email"
+                                                        placeholder="Email"
                                                         {...field}
                                                     />
                                                 </FormControl>

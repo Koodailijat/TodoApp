@@ -4,9 +4,9 @@ import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import Root from '@/routes/root/Root.tsx';
 import ErrorPage from '@/routes/error-page/ErrorPage.tsx';
 import Login from '@/routes/login/Login.tsx';
-import LoginEmail from '@/routes/login/loginemail/LoginEmail.tsx';
+import LoginUsername from '@/routes/login/loginusername/LoginUsername.tsx';
 import routeData from 'react-router';
-import SignUp from '@/routes/register/SignUp.tsx';
+import SignUp from '@/routes/signup/SignUp.tsx';
 
 describe('Root', () => {
     it('Should render root when navigated to /', () => {
@@ -76,7 +76,7 @@ describe('LoginEmail', () => {
         const routes = [
             {
                 path: '/login/email',
-                element: <LoginEmail />,
+                element: <LoginUsername />,
             },
         ];
         const router = createMemoryRouter(routes, {

@@ -1,16 +1,17 @@
 import { z } from 'zod';
 
-export function loginEmailSchema() {
+export function loginUsernameSchema() {
     return z.object({
-        email: z.string().email(),
-        // VALIDATE PASSWORD
+        username: z.string(),
         password: z.string(),
     });
 }
 
-export function emailSchema() {
+export function usernameSchema() {
     return z.object({
-        email: z.string().email(),
+        username: z
+            .string()
+            .min(2, { message: 'Username must be 2 characters long' }),
     });
 }
 

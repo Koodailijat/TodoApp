@@ -41,6 +41,7 @@ module.exports = {
         'import/no-extraneous-dependencies': ["error", {"devDependencies": true}],
         "import/extensions": [ "error", "ignorePackages", { "": "never" } ],
         "react/jsx-props-no-spreading": "off",
+        "import/prefer-default-export": "off"
     },
     ignorePatterns: ["src/__tests__/*", "src/components/ui/*", "*.config.js"], // <<< ignore all files in test folder
     globals: {
