@@ -21,5 +21,37 @@ model User {
   email      String
   password   String
 
+  // Task       Task[]
+  // Tag        Tag[]
   @@unique([username, email])
 }
+
+// model Task {
+//   id          String     @id @default(uuid())
+//   author      User       @relation(fields: [authorId], references: [id])
+//   authorId    String
+//   name        String
+//   description String?
+//   start_date  DateTime?
+//   end_date    DateTime?
+//   status      TaskStatus @default(TODO)
+//   tags        Tag[]
+//   created_at  DateTime   @default(now())
+//   updated_at  DateTime   @updatedAt
+// }
+//
+// model Tag {
+//   id       String  @id @default(uuid())
+//   author   User    @relation(fields: [authorId], references: [id])
+//   authorId String
+//   name     String
+//   Task     Task?   @relation(fields: [taskId], references: [id])
+//   taskId   String?
+// }
+//
+// enum TaskStatus {
+//   TODO
+//   IN_PROGRESS
+//   COMPLETED
+//   CANCELLED
+// }
