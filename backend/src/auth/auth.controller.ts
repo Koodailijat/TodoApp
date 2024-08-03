@@ -6,8 +6,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { SignupUserDto } from '../dto/signup-user.dto';
-import { LoginUserDto } from '../dto/login-user.dto';
+import { SignupUserDto } from './dto/signup-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 import { AuthService } from './auth.service';
 import { ApiTags } from '@nestjs/swagger';
 import { UniqueUserExceptionFilter } from '../common/filters/unique-user-exception.filter';

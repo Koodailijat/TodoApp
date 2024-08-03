@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Lock, Mail } from 'lucide-react';
+import { Lock, User } from 'lucide-react';
 import PageView from '@/components/views/PageView.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
-import { loginEmailSchema } from '@/lib/schemas/userFormSchema.ts';
+import { loginUsernameSchema } from '@/lib/schemas/authFormSchema.ts';
 import {
     Form,
     FormControl,
@@ -17,25 +17,36 @@ import {
     FormMessage,
 } from '@/components/ui/form.tsx';
 import { IconField } from '@/components/iconfield/IconField.tsx';
+import { useLoginMutation } from '@/queries/authQueries.tsx';
 
-export default function LoginEmail() {
-    const enteredEmail = useLocation().state.values.email;
-    const [email] = useState<string>(enteredEmail);
+export default function LoginUsername() {
+    const enteredUsername = useLocation().state.values.username;
+    const [username] = useState<string>(enteredUsername);
+    const loginMutation = useLoginMutation();
     const password = '';
-    const formSchema = loginEmailSchema();
-
+    const formSchema = loginUsernameSchema();
+    const navigate = useNavigate();
     const loginForm = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            email,
+            username,
             password,
         },
     });
 
-    // @ts-expect-error not implemented yet
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        // Send login
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        try {
+            await loginMutation.mutateAsync({
+                username: values.username,
+                password: values.password,
+            });
+            navigate('/');
+        } catch (error) {
+            loginForm.setError('password', {
+                type: 'custom',
+                message: 'Invalid credentials',
+            });
+        }
     }
 
     return (
@@ -43,7 +54,7 @@ export default function LoginEmail() {
             <div className="flex size-full items-center justify-center">
                 <div className="flex w-96 flex-col items-center justify-center gap-6 rounded-lg bg-secondary p-12">
                     <div className="h-full">
-                        <h1 className="text-3xl">Login with email</h1>
+                        <h1 className="text-3xl">Login with username</h1>
                     </div>
                     <Separator className="bg-border" />
                     <Form {...loginForm}>
@@ -53,15 +64,14 @@ export default function LoginEmail() {
                             <div className="flex w-full flex-col">
                                 <FormField
                                     control={loginForm.control}
-                                    name="email"
+                                    name="username"
                                     render={({ field }) => (
                                         <FormItem className="max-h-28 min-h-28 w-full">
-                                            <FormLabel>Email</FormLabel>
+                                            <FormLabel>Username</FormLabel>
                                             <FormControl>
                                                 <IconField
-                                                    icon={<Mail />}
-                                                    type="email"
-                                                    placeholder="Email"
+                                                    icon={<User />}
+                                                    placeholder="Username"
                                                     {...field}
                                                 />
                                             </FormControl>

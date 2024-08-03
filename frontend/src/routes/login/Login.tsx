@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Mail } from 'lucide-react';
+import { User } from 'lucide-react';
 import { Button } from '@/components/ui/button.tsx';
 import PageView from '@/components/views/PageView.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
@@ -16,23 +15,22 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form.tsx';
-import { emailSchema } from '@/lib/schemas/userFormSchema.ts';
+import { usernameSchema } from '@/lib/schemas/authFormSchema.ts';
 import { IconField } from '@/components/iconfield/IconField.tsx';
 
 export default function Login() {
-    const [email] = useState<string>('');
     const navigate = useNavigate();
-    const formSchema = emailSchema();
+    const formSchema = usernameSchema();
 
     const loginForm = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            email,
+            username: '',
         },
     });
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        navigate('email', { state: { values } });
+        navigate('username', { state: { values } });
     }
 
     return (
@@ -54,15 +52,14 @@ export default function Login() {
                             onSubmit={loginForm.handleSubmit(onSubmit)}>
                             <FormField
                                 control={loginForm.control}
-                                name="email"
+                                name="username"
                                 render={({ field }) => (
                                     <FormItem className="max-h-28 min-h-28 w-full pb-4">
-                                        <FormLabel>Email</FormLabel>
+                                        <FormLabel>Username</FormLabel>
                                         <FormControl>
                                             <IconField
-                                                icon={<Mail />}
-                                                type="email"
-                                                placeholder="Email"
+                                                icon={<User />}
+                                                placeholder="Username"
                                                 {...field}
                                             />
                                         </FormControl>
@@ -70,10 +67,15 @@ export default function Login() {
                                     </FormItem>
                                 )}
                             />
-
                             <Button className="m-2 w-full" type="submit">
                                 Continue
                             </Button>
+                            <div className="flex flex-col items-center justify-center">
+                                <p>Don&apos;t have an account?</p>
+                                <Link className="underline" to="/signup">
+                                    Sign up now!
+                                </Link>
+                            </div>
                         </form>
                     </Form>
                 </div>

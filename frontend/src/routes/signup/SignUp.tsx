@@ -2,7 +2,8 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Contact, Lock, Mail, User } from 'lucide-react';
-import { signUpWithEmailSchema } from '@/lib/schemas/userFormSchema.ts';
+import { useNavigate } from 'react-router-dom';
+import { signUpSchema } from '@/lib/schemas/authFormSchema.ts';
 import PageView from '@/components/views/PageView.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import {
@@ -15,15 +16,18 @@ import {
 } from '@/components/ui/form.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { IconField } from '@/components/iconfield/IconField.tsx';
+import { useSignUpMutation } from '@/queries/authQueries.tsx';
+import { SignUpUserError } from '@/lib/types/SignupUserError.ts';
 
 export default function SignUp() {
-    const formSchema = signUpWithEmailSchema();
-
+    const formSchema = signUpSchema();
+    const navigate = useNavigate();
+    const signUpMutation = useSignUpMutation();
     const signUpForm = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            firstName: '',
-            lastName: '',
+            first_name: '',
+            last_name: '',
             email: '',
             username: '',
             password: '',
@@ -31,10 +35,26 @@ export default function SignUp() {
         },
     });
 
-    // @ts-expect-error not implemented yet
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        // Send signup
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        try {
+            await signUpMutation.mutateAsync({
+                first_name: values.first_name,
+                last_name: values.last_name,
+                username: values.username,
+                email: values.email,
+                password: values.password,
+            });
+
+            navigate('/login/username', { state: { values } });
+        } catch (err) {
+            const error = err as SignUpUserError;
+            if (error.response.data.statusCode === 409) {
+                signUpForm.setError(error.response.data.conflictedField, {
+                    type: 'custom',
+                    message: error.response.data.message,
+                });
+            }
+        }
     }
 
     return (
@@ -53,7 +73,7 @@ export default function SignUp() {
                                 <div className="flex gap-6">
                                     <FormField
                                         control={signUpForm.control}
-                                        name="firstName"
+                                        name="first_name"
                                         render={({ field }) => (
                                             <FormItem className="max-h-28 min-h-28 w-full">
                                                 <FormLabel>
@@ -72,7 +92,7 @@ export default function SignUp() {
                                     />
                                     <FormField
                                         control={signUpForm.control}
-                                        name="lastName"
+                                        name="last_name"
                                         render={({ field }) => (
                                             <FormItem className="max-h-28 min-h-28 w-full">
                                                 <FormLabel>Last name</FormLabel>
@@ -91,15 +111,14 @@ export default function SignUp() {
                                 <div className="flex gap-6">
                                     <FormField
                                         control={signUpForm.control}
-                                        name="email"
+                                        name="username"
                                         render={({ field }) => (
                                             <FormItem className="max-h-28 min-h-28 w-full">
-                                                <FormLabel>Email</FormLabel>
+                                                <FormLabel>Username</FormLabel>
                                                 <FormControl>
                                                     <IconField
-                                                        icon={<Mail />}
-                                                        type="email"
-                                                        placeholder="Email"
+                                                        icon={<Contact />}
+                                                        placeholder="Username"
                                                         {...field}
                                                     />
                                                 </FormControl>
@@ -109,14 +128,15 @@ export default function SignUp() {
                                     />
                                     <FormField
                                         control={signUpForm.control}
-                                        name="username"
+                                        name="email"
                                         render={({ field }) => (
                                             <FormItem className="max-h-28 min-h-28 w-full">
-                                                <FormLabel>Username</FormLabel>
+                                                <FormLabel>Email</FormLabel>
                                                 <FormControl>
                                                     <IconField
-                                                        icon={<Contact />}
-                                                        placeholder="Username"
+                                                        icon={<Mail />}
+                                                        type="email"
+                                                        placeholder="Email"
                                                         {...field}
                                                     />
                                                 </FormControl>
