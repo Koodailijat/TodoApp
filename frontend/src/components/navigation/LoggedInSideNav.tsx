@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { LayoutDashboard, LogOut, TimerIcon, UserRound } from 'lucide-react';
+import { useContext } from 'react';
 import TooltipHelper from '@/lib/TooltipHelper.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import { storageKeys } from '@/constants/storageKeys.ts';
-import { useContext } from 'react';
 import { UserContext } from '@/routes/root/Root.tsx';
 
 interface LoggedInSideNavProps {
