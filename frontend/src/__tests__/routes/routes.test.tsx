@@ -7,11 +7,7 @@ import Login from '@/routes/login/Login.tsx';
 import LoginUsername from '@/routes/login/loginusername/LoginUsername.tsx';
 import routeData from 'react-router';
 import SignUp from '@/routes/signup/SignUp.tsx';
-import {
-    QueryClient,
-    QueryClientContext,
-    QueryClientProvider,
-} from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 describe('Root', () => {
     it('Should render root when navigated to /', () => {

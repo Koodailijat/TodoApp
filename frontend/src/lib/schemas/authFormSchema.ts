@@ -41,15 +41,15 @@ export function signUpSchema() {
                 }),
             password: z
                 .string()
-                .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, {
-                    message:
-                        'Password must contain at least one capitalized letter and one number',
-                })
                 .min(8, {
                     message: 'Password must be longer than 8 characters',
                 })
                 .max(32, {
                     message: 'Password must be shorter than 32 characters',
+                })
+                .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]$/, {
+                    message:
+                        'Password must contain at least one capitalized letter and one number',
                 }),
             confirmPassword: z.string(),
         })
