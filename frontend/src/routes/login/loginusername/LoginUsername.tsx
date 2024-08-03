@@ -50,7 +50,12 @@ export default function LoginUsername() {
             );
             navigate('/');
         } catch (error) {
-            console.log('ERROR', error);
+            if (error.response.data.statusCode === 401) {
+                loginForm.setError('password', {
+                    type: 'custom',
+                    message: 'Invalid credentials',
+                });
+            }
         }
     }
 
