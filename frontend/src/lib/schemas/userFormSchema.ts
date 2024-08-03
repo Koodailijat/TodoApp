@@ -18,13 +18,13 @@ export function usernameSchema() {
 export function signUpSchema() {
     return z
         .object({
-            firstName: z
+            first_name: z
                 .string()
                 .min(2, { message: 'First name is required' })
                 .max(16, {
                     message: 'First name must be shorter than 16 characters',
                 }),
-            lastName: z
+            last_name: z
                 .string()
                 .min(2, { message: 'Last name is required' })
                 .max(16, {

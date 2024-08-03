@@ -17,6 +17,7 @@ import {
 import { Button } from '@/components/ui/button.tsx';
 import { IconField } from '@/components/iconfield/IconField.tsx';
 import { useSignUpMutation } from '@/queries/authQueries.tsx';
+import { SignUpUserError } from '@/lib/types/SignupUserError.ts';
 
 export default function SignUp() {
     const formSchema = signUpSchema();
@@ -25,8 +26,8 @@ export default function SignUp() {
     const signUpForm = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            firstName: '',
-            lastName: '',
+            first_name: '',
+            last_name: '',
             email: '',
             username: '',
             password: '',
@@ -37,14 +38,15 @@ export default function SignUp() {
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
             await signUpMutation.mutateAsync({
-                first_name: values.firstName,
-                last_name: values.lastName,
+                first_name: values.first_name,
+                last_name: values.last_name,
                 username: values.username,
                 email: values.email,
                 password: values.password,
             });
             navigate('/login/username');
-        } catch (error) {
+        } catch (err) {
+            const error = err as SignUpUserError;
             if (error.response.data.statusCode === 409) {
                 signUpForm.setError(error.response.data.conflictedField, {
                     type: 'custom',
@@ -70,7 +72,7 @@ export default function SignUp() {
                                 <div className="flex gap-6">
                                     <FormField
                                         control={signUpForm.control}
-                                        name="firstName"
+                                        name="first_name"
                                         render={({ field }) => (
                                             <FormItem className="max-h-28 min-h-28 w-full">
                                                 <FormLabel>
@@ -89,7 +91,7 @@ export default function SignUp() {
                                     />
                                     <FormField
                                         control={signUpForm.control}
-                                        name="lastName"
+                                        name="last_name"
                                         render={({ field }) => (
                                             <FormItem className="max-h-28 min-h-28 w-full">
                                                 <FormLabel>Last name</FormLabel>
