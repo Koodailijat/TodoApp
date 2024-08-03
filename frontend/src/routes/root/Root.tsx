@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { createContext, useMemo, useState } from 'react';
 import SideNav from '@/components/navigation/SideNav.tsx';
 import { ThemeProvider } from '@/components/theme-provider.tsx';
+import { storageKeys } from '@/constants/storageKeys.ts';
 
 export interface UserContextTypes {
     loggedIn: boolean;
@@ -23,9 +24,9 @@ export const NavBarContext = createContext<NavBarContextTypes>({
     setIsOpen: () => {},
 });
 export default function Root() {
-    const [loggedIn, setLoggedIn] = useState(false);
+    const isLoggedIn = !!localStorage.getItem(storageKeys.accessToken);
+    const [loggedIn, setLoggedIn] = useState(isLoggedIn);
     const [isOpen, setIsOpen] = useState(true);
-
     const userValue = useMemo(() => ({ loggedIn, setLoggedIn }), [loggedIn]);
     const isOpenValue = useMemo(() => ({ isOpen, setIsOpen }), [isOpen]);
 
