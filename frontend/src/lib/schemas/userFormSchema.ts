@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 export function loginUsernameSchema() {
     return z.object({
-        username: z.string(),
-        password: z.string(),
+        username: z.string().min(2, { message: 'Username is invalid' }),
+        password: z.string().min(8, { message: 'Password is invalid' }),
     });
 }
 
@@ -11,33 +11,49 @@ export function usernameSchema() {
     return z.object({
         username: z
             .string()
-            .min(2, { message: 'Username must be 2 characters long' }),
+            .min(2, { message: 'Username must be longer than 2 characters' }),
     });
 }
 
-export function signUpWithEmailSchema() {
+export function signUpSchema() {
     return z
         .object({
-            firstName: z.string().min(2, { message: 'First name is required' }),
-            lastName: z.string().min(2, { message: 'Last name is required' }),
+            firstName: z
+                .string()
+                .min(2, { message: 'First name is required' })
+                .max(16, {
+                    message: 'First name must be shorter than 16 characters',
+                }),
+            lastName: z
+                .string()
+                .min(2, { message: 'Last name is required' })
+                .max(16, {
+                    message: 'Last name must be shorter than 16 characters',
+                }),
             email: z.string().email(),
             username: z
                 .string()
-                .min(3, { message: 'Username must be 3 characters long' })
-                .max(20, {
-                    message: 'Username must be shorter than 20 characters',
+                .min(2, {
+                    message: 'Username must be longer than 2 characters',
+                })
+                .max(16, {
+                    message: 'Username must be shorter than 16 characters',
                 }),
             password: z
                 .string()
                 .includes('')
-                .min(8, { message: 'Password must be 8 characters long' })
+                .min(8, {
+                    message: 'Password must be longer than 8 characters',
+                })
                 .max(32, {
                     message: 'Password must be shorter than 32 characters',
                 }),
             confirmPassword: z
                 .string()
                 .includes('')
-                .min(8, { message: 'Password must be 8 characters long' })
+                .min(8, {
+                    message: 'Password must be longer than 8 characters',
+                })
                 .max(32, {
                     message: 'Password must be shorter than 32 characters',
                 }),

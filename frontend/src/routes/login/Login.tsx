@@ -71,7 +71,7 @@ export default function Login() {
                                 Continue
                             </Button>
                             <div className="flex flex-col items-center justify-center">
-                                <p>Don't have an account?</p>
+                                <p>Don&apos;t have an account?</p>
                                 <Link className="underline" to="/signup">
                                     Sign up now!
                                 </Link>

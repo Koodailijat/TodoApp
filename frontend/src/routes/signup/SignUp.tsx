@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { setErrorMap, z } from 'zod';
+import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Contact, Lock, Mail, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { signUpWithEmailSchema } from '@/lib/schemas/userFormSchema.ts';
+import { signUpSchema } from '@/lib/schemas/userFormSchema.ts';
 import PageView from '@/components/views/PageView.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import {
@@ -16,13 +16,12 @@ import {
 } from '@/components/ui/form.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { IconField } from '@/components/iconfield/IconField.tsx';
-import { request } from '@/services/request.ts';
-import { useState } from 'react';
-import { AxiosError } from 'axios';
+import { useSignUpMutation } from '@/queries/authQueries.tsx';
 
 export default function SignUp() {
-    const formSchema = signUpWithEmailSchema();
+    const formSchema = signUpSchema();
     const navigate = useNavigate();
+    const signUpMutation = useSignUpMutation();
     const signUpForm = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -37,18 +36,14 @@ export default function SignUp() {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            await request({
-                method: 'POST',
-                url: 'auth/signup',
-                data: {
-                    first_name: values.firstName,
-                    last_name: values.lastName,
-                    username: values.username,
-                    email: values.email,
-                    password: values.password,
-                },
+            await signUpMutation.mutateAsync({
+                first_name: values.firstName,
+                last_name: values.lastName,
+                username: values.username,
+                email: values.email,
+                password: values.password,
             });
-            navigate('/login/email');
+            navigate('/login/username');
         } catch (error) {
             if (error.response.data.statusCode === 409) {
                 signUpForm.setError(error.response.data.conflictedField, {

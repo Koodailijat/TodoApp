@@ -17,12 +17,12 @@ import {
     FormMessage,
 } from '@/components/ui/form.tsx';
 import { IconField } from '@/components/iconfield/IconField.tsx';
-import { request } from '@/services/request.ts';
-import { storageKeys } from '@/constants/storageKeys.ts';
+import { useLoginMutation } from '@/queries/authQueries.tsx';
 
 export default function LoginUsername() {
     const enteredUsername = useLocation().state.values.username;
     const [username] = useState<string>(enteredUsername);
+    const loginMutation = useLoginMutation();
     const password = '';
     const formSchema = loginUsernameSchema();
     const navigate = useNavigate();
@@ -36,26 +36,16 @@ export default function LoginUsername() {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            const response = await request({
-                method: 'POST',
-                url: 'auth/login',
-                data: {
-                    username: values.username,
-                    password: values.password,
-                },
+            await loginMutation.mutateAsync({
+                username: values.username,
+                password: values.password,
             });
-            localStorage.setItem(
-                storageKeys.accessToken,
-                response.data.auth_token
-            );
             navigate('/');
         } catch (error) {
-            if (error.response.data.statusCode === 401) {
-                loginForm.setError('password', {
-                    type: 'custom',
-                    message: 'Invalid credentials',
-                });
-            }
+            loginForm.setError('password', {
+                type: 'custom',
+                message: 'Invalid credentials',
+            });
         }
     }
 
