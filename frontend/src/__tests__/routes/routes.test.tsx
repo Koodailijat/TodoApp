@@ -7,6 +7,11 @@ import Login from '@/routes/login/Login.tsx';
 import LoginUsername from '@/routes/login/loginusername/LoginUsername.tsx';
 import routeData from 'react-router';
 import SignUp from '@/routes/signup/SignUp.tsx';
+import {
+    QueryClient,
+    QueryClientContext,
+    QueryClientProvider,
+} from '@tanstack/react-query';
 
 describe('Root', () => {
     it('Should render root when navigated to /', () => {
@@ -51,27 +56,34 @@ describe('Login', () => {
                 element: <Login />,
             },
         ];
+        const queryClient = new QueryClient({});
         const router = createMemoryRouter(routes, {
             initialEntries: ['/login'],
             initialIndex: 1,
         });
-        render(<RouterProvider router={router} />);
 
+        render(
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router} />
+            </QueryClientProvider>
+        );
         expect(screen.getByRole('heading', { name: 'Login' })).toBeDefined();
     });
 });
 
 describe('LoginEmail', () => {
     const useLocation = vi.spyOn(routeData, 'useLocation');
+
     beforeEach(() => {
         useLocation.mockReturnValue({
             hash: '',
             key: '',
             pathname: '',
             search: '',
-            state: { values: { email: 'test@test.com' } },
+            state: { values: { username: 'test@test.com' } },
         });
     });
+
     it('Should render email login when navigated to /login/email', () => {
         const routes = [
             {
@@ -79,14 +91,19 @@ describe('LoginEmail', () => {
                 element: <LoginUsername />,
             },
         ];
+        const queryClient = new QueryClient({});
         const router = createMemoryRouter(routes, {
             initialEntries: ['/login/email'],
             initialIndex: 1,
         });
-        render(<RouterProvider router={router} />);
 
+        render(
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router} />
+            </QueryClientProvider>
+        );
         expect(
-            screen.getByRole('heading', { name: 'Login with email' })
+            screen.getByRole('heading', { name: 'Login with username' })
         ).toBeDefined();
     });
 });
@@ -103,7 +120,13 @@ describe('Signup', () => {
             initialEntries: ['/signup'],
             initialIndex: 1,
         });
-        const { container } = render(<RouterProvider router={router} />);
+        const queryClient = new QueryClient({});
+        const { container } = render(
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router} />
+                );
+            </QueryClientProvider>
+        );
 
         expect(
             getByRole(container, 'heading', { name: 'Sign Up' })
