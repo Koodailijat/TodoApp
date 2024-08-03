@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -18,10 +18,12 @@ import {
 } from '@/components/ui/form.tsx';
 import { IconField } from '@/components/iconfield/IconField.tsx';
 import { useLoginMutation } from '@/queries/authQueries.tsx';
+import { UserContext } from '@/routes/root/Root.tsx';
 
 export default function LoginUsername() {
     const enteredUsername = useLocation().state.values.username;
     const [username] = useState<string>(enteredUsername);
+    const { setLoggedIn } = useContext(UserContext);
     const loginMutation = useLoginMutation();
     const password = '';
     const formSchema = loginUsernameSchema();
@@ -41,6 +43,7 @@ export default function LoginUsername() {
                 password: values.password,
             });
             navigate('/');
+            setLoggedIn(true);
         } catch (error) {
             loginForm.setError('password', {
                 type: 'custom',
