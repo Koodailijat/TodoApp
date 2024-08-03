@@ -15,7 +15,7 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form.tsx';
-import { usernameSchema } from '@/lib/schemas/userFormSchema.ts';
+import { usernameSchema } from '@/lib/schemas/authFormSchema.ts';
 import { IconField } from '@/components/iconfield/IconField.tsx';
 
 export default function Login() {

@@ -7,7 +7,7 @@ import { Lock, User } from 'lucide-react';
 import PageView from '@/components/views/PageView.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
-import { loginUsernameSchema } from '@/lib/schemas/userFormSchema.ts';
+import { loginUsernameSchema } from '@/lib/schemas/authFormSchema.ts';
 import {
     Form,
     FormControl,

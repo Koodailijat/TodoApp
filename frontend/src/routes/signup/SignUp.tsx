@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Contact, Lock, Mail, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { signUpSchema } from '@/lib/schemas/userFormSchema.ts';
+import { signUpSchema } from '@/lib/schemas/authFormSchema.ts';
 import PageView from '@/components/views/PageView.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import {
@@ -44,7 +44,8 @@ export default function SignUp() {
                 email: values.email,
                 password: values.password,
             });
-            navigate('/login/username');
+
+            navigate('/login/username', { state: { values } });
         } catch (err) {
             const error = err as SignUpUserError;
             if (error.response.data.statusCode === 409) {
