@@ -36,6 +36,9 @@ export class TaskService {
       where: {
         author_id,
       },
+      include: {
+        tags: true,
+      },
     });
   }
 
@@ -44,6 +47,9 @@ export class TaskService {
       where: {
         author_id,
         id,
+      },
+      include: {
+        tags: true,
       },
     });
   }
