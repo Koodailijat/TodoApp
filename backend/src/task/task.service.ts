@@ -36,6 +36,9 @@ export class TaskService {
       where: {
         author_id,
       },
+      include: {
+        tags: true,
+      },
     });
   }
 
@@ -45,6 +48,9 @@ export class TaskService {
         author_id,
         id,
       },
+      include: {
+        tags: true,
+      },
     });
   }
 
@@ -52,7 +58,12 @@ export class TaskService {
   //   return `This action updates a #${id} task`;
   // }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} task`;
-  // }
+  remove(author_id, id: string) {
+    return this.prisma.task.delete({
+      where: {
+        id,
+        author_id,
+      },
+    });
+  }
 }
