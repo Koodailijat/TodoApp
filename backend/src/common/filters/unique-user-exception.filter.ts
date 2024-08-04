@@ -27,7 +27,7 @@ export class UniqueUserExceptionFilter extends BaseExceptionFilter {
         response.status(status).json({
           statusCode: status,
           message: errorMessage,
-          conflictedField: failedField,
+          conflict: failedField,
         });
         break;
       }

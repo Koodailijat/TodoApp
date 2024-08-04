@@ -3,37 +3,48 @@ import {
   Controller,
   Post,
   UseFilters,
+  UseGuards,
   UsePipes,
+  Request,
   ValidationPipe,
+  Get,
 } from '@nestjs/common';
 import { SignupUserDto } from './dto/signup-user.dto';
-import { LoginUserDto } from './dto/login-user.dto';
 import { AuthService } from './auth.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UniqueUserExceptionFilter } from '../common/filters/unique-user-exception.filter';
+import { LocalAuthGuard } from './guards/local-auth.guard';
+import { Public } from '../common/decorators/public.decorator';
 
 @Controller('auth')
+@UsePipes(
+  new ValidationPipe({
+    disableErrorMessages: true,
+  }),
+)
 @ApiTags('Authentication')
 export class AuthController {
   constructor(private authService: AuthService) {}
+
+  @Get()
+  @ApiOperation({ summary: "Check user's authentication status" })
+  @ApiResponse({ status: 200, description: 'Authenticated.' })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  async getAuthentication() {
+    return;
+  }
+
   @Post('signup')
-  @UsePipes(
-    new ValidationPipe({
-      disableErrorMessages: true,
-    }),
-  )
+  @Public()
   @UseFilters(new UniqueUserExceptionFilter())
   async signup(@Body() signupUserDto: SignupUserDto) {
     return this.authService.signUp(signupUserDto);
   }
 
   @Post('login')
-  @UsePipes(
-    new ValidationPipe({
-      disableErrorMessages: true,
-    }),
-  )
-  async login(@Body() loginUserDto: LoginUserDto) {
-    return this.authService.login(loginUserDto);
+  @Public()
+  @UseGuards(LocalAuthGuard)
+  async login(@Request() req) {
+    return this.authService.login(req.user);
   }
 }

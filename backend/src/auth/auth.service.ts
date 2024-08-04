@@ -1,11 +1,11 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { PrismaService } from '../prisma.service';
-import { LoginUserDto } from './dto/login-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { SignupUserDto } from './dto/signup-user.dto';
 import { AuthTokenDto } from './dto/auth-token.dto';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -28,13 +28,7 @@ export class AuthService {
     return;
   }
 
-  async login({ username, password }: LoginUserDto): Promise<AuthTokenDto> {
-    const user = await this.userService.findOne({ username });
-
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      throw new UnauthorizedException();
-    }
-
+  async login(user: User): Promise<AuthTokenDto> {
     const payload = { sub: user.id, username: user.username };
 
     return {
@@ -45,5 +39,15 @@ export class AuthService {
       username: user.username,
       email: user.username,
     };
+  }
+
+  async validateUser(username: string, password: string): Promise<any> {
+    const user = await this.userService.findOne({ username });
+    if (user && (await bcrypt.compare(password, user.password))) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { password, ...result } = user;
+      return result;
+    }
+    return null;
   }
 }
