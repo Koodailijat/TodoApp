@@ -13,7 +13,12 @@ export interface TaskDto {
     start_date: string | null;
     end_date: string | null;
     status: TaskStatus;
-    tags: string[];
+    tags: Tag[];
     created_at: string;
     updated_at: string;
+}
+
+export interface Tag {
+    id: string;
+    name: string;
 }
