@@ -27,9 +27,9 @@ authInstance.interceptors.request.use(
 );
 
 export async function request(config: AxiosRequestConfig) {
-    return instance.request(config);
+    return instance.request(config).then((response) => response.data);
 }
 
 export async function authRequest(config: AxiosRequestConfig) {
-    return authInstance.request(config);
+    return authInstance.request(config).then((response) => response.data);
 }

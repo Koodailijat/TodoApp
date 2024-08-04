@@ -5,6 +5,7 @@ import TooltipHelper from '@/lib/TooltipHelper.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import { storageKeys } from '@/constants/storageKeys.ts';
 import { UserContext } from '@/routes/root/Root.tsx';
+import { queryClient } from '@/queries/queryClient.ts';
 
 interface LoggedInSideNavProps {
     isOpen: boolean;
@@ -18,7 +19,7 @@ export default function LoggedInSideNav({ isOpen }: LoggedInSideNavProps) {
                 <TooltipHelper tooltip={<p>Dashboard</p>}>
                     <Link
                         className="flex w-8/12 items-center justify-center gap-2 rounded-lg p-2 hover:bg-primary hover:text-secondary"
-                        to="/login">
+                        to="/dashboard">
                         <LayoutDashboard />
                         {isOpen ? 'Dashboard' : ''}
                     </Link>
@@ -51,6 +52,7 @@ export default function LoggedInSideNav({ isOpen }: LoggedInSideNavProps) {
                 <TooltipHelper tooltip={<p>Logout</p>}>
                     <Link
                         onClick={() => {
+                            queryClient.clear();
                             localStorage.removeItem(storageKeys.accessToken);
                             setLoggedIn(false);
                         }}

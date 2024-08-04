@@ -3,7 +3,7 @@ import { z } from 'zod';
 export function loginUsernameSchema() {
     return z.object({
         username: z.string().min(2, { message: 'Username is invalid' }),
-        password: z.string().min(8, { message: 'Password is invalid' }),
+        password: z.string().min(0, { message: 'Password is invalid' }),
     });
 }
 
