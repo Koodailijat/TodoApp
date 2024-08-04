@@ -26,8 +26,8 @@ model User {
 
 model Task {
   id          String     @id @default(uuid())
-  author      User       @relation(fields: [authorId], references: [id])
-  authorId    String
+  author      User       @relation(fields: [author_id], references: [id])
+  author_id   String
   name        String
   description String?
   start_date  DateTime?
@@ -39,12 +39,13 @@ model Task {
 }
 
 model Tag {
-  id       String  @id @default(uuid())
-  author   User    @relation(fields: [authorId], references: [id])
-  authorId String
-  name     String
-  Task     Task?   @relation(fields: [taskId], references: [id])
-  taskId   String?
+  id        String @id @default(uuid())
+  author    User   @relation(fields: [author_id], references: [id])
+  author_id String
+  name      String @unique
+  tasks     Task[]
+
+  @@unique([author_id, name], name: "tagIdentifier")
 }
 
 enum TaskStatus {
