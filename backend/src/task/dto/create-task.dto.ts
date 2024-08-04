@@ -1,4 +1,10 @@
-import { IsArray, IsDate, IsEnum, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsEnum,
+  IsISO8601,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { TaskStatus } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -12,14 +18,14 @@ export class CreateTaskDto {
   @ApiProperty({ example: 'Remember to do chores' })
   description: string;
 
-  @IsDate()
+  @IsISO8601()
   @IsOptional()
-  @ApiProperty({ example: '2024-06-08T20:00:31+03:00' })
+  @ApiProperty({ example: '2024-06-02T16:10:23.664Z' })
   start_date: string;
 
-  @IsDate()
+  @IsISO8601()
   @IsOptional()
-  @ApiProperty({ example: '2024-06-15T20:00:31+03:00' })
+  @ApiProperty({ example: '2024-07-16T20:21:23.664Z' })
   end_date: string;
 
   @IsEnum(TaskStatus)

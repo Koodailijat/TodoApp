@@ -1,15 +1,13 @@
 import {
-  Body,
   Controller,
   Delete,
   Get,
+  HttpCode,
   Param,
-  Post,
   Request,
 } from '@nestjs/common';
 import { TagService } from './tag.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateTagDto } from './dto/create-tag.dto';
 
 @Controller('tag')
 @ApiTags('Tag')
@@ -38,6 +36,7 @@ export class TagController {
   // }
 
   @Delete(':id')
+  @HttpCode(204)
   remove(@Request() req, @Param('id') id: string) {
     return this.tagService.remove(req.user.userId, id);
   }

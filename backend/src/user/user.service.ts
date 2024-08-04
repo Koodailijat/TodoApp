@@ -5,9 +5,13 @@ import { PrismaService } from '../prisma.service';
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
-  async findOne(UserWhereInput: Prisma.UserWhereInput): Promise<User | null> {
+  async findOne(
+    UserWhereInput: Prisma.UserWhereInput,
+    UserInclude?: Prisma.UserInclude,
+  ): Promise<User | null> {
     return this.prisma.user.findFirst({
       where: UserWhereInput,
+      include: UserInclude,
     });
   }
 

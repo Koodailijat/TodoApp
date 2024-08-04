@@ -8,6 +8,7 @@ import {
   UsePipes,
   ValidationPipe,
   Delete,
+  HttpCode,
 } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -43,6 +44,7 @@ export class TaskController {
   // }
 
   @Delete(':id')
+  @HttpCode(204)
   remove(@Request() req, @Param('id') id: string) {
     return this.taskService.remove(req.user.userId, id);
   }

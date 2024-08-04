@@ -14,14 +14,16 @@ datasource db {
 }
 
 model User {
-  id         String @id @default(uuid())
+  id         String   @id @default(uuid())
   first_name String
   last_name  String
-  username   String @unique
-  email      String @unique
+  username   String   @unique
+  email      String   @unique
   password   String
   Task       Task[]
   Tag        Tag[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model Task {
