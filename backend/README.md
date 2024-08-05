@@ -1,13 +1,30 @@
 # Todo App Backend
+![swagger](https://github.com/user-attachments/assets/3a5cc4d5-573c-4bf8-b4ac-920679073505)
 
 ## Description
 
-Todo application backend
+* NestJS
+* Prisma
+* PostgreSQL
+* Passport
+* TypeScript
+* Swagger
+
+## Environment variables
+```
+DATABASE_URL="postgresql://username:password@localhost:5432/todoapp?schema=public"
+JWT_SECRET="jwt-secret"
+```
 
 ## Installation
 
 ```bash
-$ yarn install
+$ npm install
+```
+
+## Setup database
+```bash
+$ npx prisma migrate dev
 ```
 
 ## Running the app
