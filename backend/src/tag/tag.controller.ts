@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { TagService } from './tag.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { TagDto } from './dto/tag.dto';
 
 @Controller('tag')
 @ApiTags('Tag')
@@ -21,7 +22,7 @@ export class TagController {
 
   @Get()
   @ApiOperation({ summary: "Get user's all tags" })
-  findAllByAuthor(@Request() req) {
+  async findAllByAuthor(@Request() req): Promise<TagDto[]> {
     return this.tagService.findAllByAuthor(req.user.userId);
   }
 

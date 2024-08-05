@@ -31,14 +31,14 @@ export class AuthController {
   @ApiOperation({ summary: "Check user's authentication status" })
   @ApiResponse({ status: 200, description: 'Authenticated.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async getAuthentication() {
+  async getAuthentication(): Promise<void> {
     return;
   }
 
   @Post('signup')
   @Public()
   @UseFilters(new UniqueUserExceptionFilter())
-  async signup(@Body() signupUserDto: SignupUserDto) {
+  async signup(@Body() signupUserDto: SignupUserDto): Promise<void> {
     return this.authService.signUp(signupUserDto);
   }
 

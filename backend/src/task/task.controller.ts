@@ -13,6 +13,7 @@ import {
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { TaskDto } from './dto/task.dto';
 
 @Controller('task')
 @UsePipes(new ValidationPipe({ transform: true }))
@@ -22,19 +23,22 @@ export class TaskController {
 
   @Post()
   @ApiOperation({ summary: 'Create a task and any including new tags' })
-  create(@Request() req, @Body() createTaskDto: CreateTaskDto) {
+  async create(
+    @Request() req,
+    @Body() createTaskDto: CreateTaskDto,
+  ): Promise<TaskDto> {
     return this.taskService.create(req.user.userId, createTaskDto);
   }
 
   @Get()
   @ApiOperation({ summary: "Get user's all tasks" })
-  findAllByAuthor(@Request() req) {
+  async findAllByAuthor(@Request() req): Promise<TaskDto[]> {
     return this.taskService.findAllByAuthor(req.user.userId);
   }
 
   @Get(':id')
   @ApiOperation({ summary: "Get user's task by id" })
-  findOneByAuthor(@Request() req, @Param('id') id: string) {
+  findOneByAuthor(@Request() req, @Param('id') id: string): Promise<TaskDto> {
     return this.taskService.findOne(req.user.userId, id);
   }
 
