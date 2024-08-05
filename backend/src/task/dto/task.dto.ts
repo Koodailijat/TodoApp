@@ -26,7 +26,7 @@ export class TaskDto {
   @IsString()
   @IsOptional()
   @ApiProperty({ example: 'Remember to do chores' })
-  description: string;
+  description: string | null;
 
   @IsISO8601()
   @IsOptional()
