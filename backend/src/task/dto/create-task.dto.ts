@@ -16,25 +16,25 @@ export class CreateTaskDto {
   @IsString()
   @IsOptional()
   @ApiProperty({ example: 'Remember to do chores' })
-  description: string;
+  description?: string;
 
   @IsISO8601()
   @IsOptional()
   @ApiProperty({ example: '2024-06-02T16:10:23.664Z' })
-  start_date: string;
+  start_date?: string;
 
   @IsISO8601()
   @IsOptional()
   @ApiProperty({ example: '2024-07-16T20:21:23.664Z' })
-  end_date: string;
+  end_date?: string;
 
   @IsEnum(TaskStatus)
   @IsOptional()
   @ApiProperty({ example: 'TODO' })
-  status: TaskStatus = TaskStatus.TODO;
+  status?: TaskStatus = TaskStatus.TODO;
 
   @IsArray()
   @IsOptional()
   @ApiProperty({ example: ['Daily', 'Common'] })
-  tags: string[] = [];
+  tags?: string[] = [];
 }
