@@ -7,11 +7,8 @@ export function useLoginMutation() {
     return useMutation({
         mutationFn: loginRequest,
         mutationKey: [mutationKeys.login],
-        onSuccess: (response) => {
-            localStorage.setItem(
-                storageKeys.accessToken,
-                response.data.auth_token
-            );
+        onSuccess: (data) => {
+            localStorage.setItem(storageKeys.accessToken, data.auth_token);
         },
     });
 }

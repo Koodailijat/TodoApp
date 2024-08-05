@@ -9,8 +9,8 @@ export default function PageView({ children }: PageViewProps) {
     const { isOpen } = useContext(NavBarContext);
     const isOpenStyle = isOpen ? 'ml-60' : 'ml-20';
     return (
-        <div className="size-full bg-primary-foreground">
-            <div className={`${isOpenStyle} h-screen bg-primary-foreground`}>
+        <div className="size-full bg-background">
+            <div className={`${isOpenStyle} h-screen bg-background p-6`}>
                 {children}
             </div>
         </div>
