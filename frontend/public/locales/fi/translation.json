@@ -1,0 +1,24 @@
+{
+    "menu": {
+        "home": "Koti",
+        "dashboard": "Työpöytä",
+        "profile": "Profiili",
+        "reminders": "Muistutukset",
+        "logout": "Kirjaudu ulos",
+        "login": "Kirjaudu sisään",
+        "signup": "Rekisteröidy",
+        "switchToDarkMode": "Vaihda tummaan tilaan",
+        "switchToLightMode": "Vaihda vaaleaan tilaan",
+        "collapse": "Pienennä",
+        "expand": "Suurenna",
+        "toggleNavigation": "Vaihda navigaation tilaa"
+    },
+    "task": {
+        "status": {
+            "TODO": "Tehtävissä",
+            "IN_PROGRESS": "Työn alla",
+            "COMPLETED": "Tehty",
+            "CANCELLED": "Peruttu"
+        }
+    }
+}

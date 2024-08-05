@@ -4,7 +4,7 @@ import './styles/defaults.scss';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import Root from './routes/root/Root.tsx';
-
+import './i18n.ts';
 import Login from '@/routes/login/Login.tsx';
 import ErrorPage from '@/routes/error-page/ErrorPage.tsx';
 import LoginUsername from '@/routes/login/loginusername/LoginUsername.tsx';
