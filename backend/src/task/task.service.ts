@@ -1,17 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
-import { UpdateTaskDto } from './dto/update-task.dto';
 import { PrismaService } from '../prisma.service';
-import { TagService } from '../tag/tag.service';
+import { TaskDto } from './dto/task.dto';
 
 @Injectable()
 export class TaskService {
-  constructor(
-    private prisma: PrismaService,
-    private tagService: TagService,
-  ) {}
+  constructor(private prisma: PrismaService) {}
 
-  async create(author_id: string, createTaskDto: CreateTaskDto) {
+  async create(
+    author_id: string,
+    createTaskDto: CreateTaskDto,
+  ): Promise<TaskDto> {
     const { tags, ...newTask } = createTaskDto;
 
     return this.prisma.task.create({
@@ -31,10 +30,13 @@ export class TaskService {
     });
   }
 
-  findAllByAuthor(author_id: string) {
+  async findAllByAuthor(author_id: string) {
     return this.prisma.task.findMany({
       where: {
         author_id,
+      },
+      include: {
+        tags: true,
       },
     });
   }
@@ -45,6 +47,9 @@ export class TaskService {
         author_id,
         id,
       },
+      include: {
+        tags: true,
+      },
     });
   }
 
@@ -52,7 +57,12 @@ export class TaskService {
   //   return `This action updates a #${id} task`;
   // }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} task`;
-  // }
+  remove(author_id, id: string) {
+    return this.prisma.task.delete({
+      where: {
+        id,
+        author_id,
+      },
+    });
+  }
 }

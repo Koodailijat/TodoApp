@@ -1,6 +1,14 @@
-import { Controller, Get, Request } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Request,
+} from '@nestjs/common';
 import { TagService } from './tag.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { TagDto } from './dto/tag.dto';
 
 @Controller('tag')
 @ApiTags('Tag')
@@ -14,7 +22,7 @@ export class TagController {
 
   @Get()
   @ApiOperation({ summary: "Get user's all tags" })
-  findAllByAuthor(@Request() req) {
+  async findAllByAuthor(@Request() req): Promise<TagDto[]> {
     return this.tagService.findAllByAuthor(req.user.userId);
   }
 
@@ -28,8 +36,9 @@ export class TagController {
   //   return this.tagService.update(+id, updateTagDto);
   // }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.tagService.remove(+id);
-  // }
+  @Delete(':id')
+  @HttpCode(204)
+  remove(@Request() req, @Param('id') id: string) {
+    return this.tagService.remove(req.user.userId, id);
+  }
 }
