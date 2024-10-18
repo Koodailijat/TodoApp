@@ -5,7 +5,7 @@ export enum TaskStatus {
     CANCELLED = 'CANCELLED',
 }
 
-export interface TaskDto {
+export interface TaskOutputDto {
     id: string;
     author_id: string;
     name: string;
@@ -16,6 +16,15 @@ export interface TaskDto {
     tags: Tag[];
     created_at: string;
     updated_at: string;
+}
+
+export interface TaskInputDto {
+    name: string;
+    description: string | null;
+    start_date: string | null;
+    end_date: string | null;
+    status: TaskStatus;
+    tags: Tag[];
 }
 
 export interface Tag {

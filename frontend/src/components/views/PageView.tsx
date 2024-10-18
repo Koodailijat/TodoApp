@@ -10,7 +10,8 @@ export default function PageView({ children }: PageViewProps) {
     const isOpenStyle = isOpen ? 'ml-60' : 'ml-20';
     return (
         <div className="size-full bg-background">
-            <div className={`${isOpenStyle} h-screen bg-background p-6`}>
+            <div
+                className={`${isOpenStyle} flex h-screen flex-col gap-4 bg-background p-6`}>
                 {children}
             </div>
         </div>

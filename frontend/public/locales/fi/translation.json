@@ -11,14 +11,23 @@
         "switchToLightMode": "Vaihda vaaleaan tilaan",
         "collapse": "Pienennä",
         "expand": "Suurenna",
-        "toggleNavigation": "Vaihda navigaation tilaa"
+        "toggleNavigation": "Vaihda navigaation tilaa",
+        "cancel": "Peru",
+        "add": "Lisää"
     },
     "task": {
         "status": {
-            "TODO": "Tehtävissä",
+            "TODO": "tehtävä",
             "IN_PROGRESS": "Työn alla",
             "COMPLETED": "Tehty",
             "CANCELLED": "Peruttu"
-        }
+        },
+        "statusText": "Tila",
+        "setStatus": "Aseta tila",
+        "addNew": "Lisää uusi tehtävä",
+        "name": "Nimi",
+        "description": "Kuvaus",
+        "startDate": "Aloituspäivämäärä",
+        "endDate": "Lopetuspäivämäärä"
     }
 }
