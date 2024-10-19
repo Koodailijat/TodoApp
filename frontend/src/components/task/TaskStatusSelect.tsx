@@ -1,20 +1,10 @@
 import * as React from 'react';
-import {
-    ArrowUpCircle,
-    CheckCircle2,
-    Circle,
-    HelpCircle,
-    LucideIcon,
-    XCircle,
-} from 'lucide-react';
-
-import { cn } from '@/lib/utils.ts';
+import { LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button.tsx';
 import {
     Command,
     CommandEmpty,
     CommandGroup,
-    CommandInput,
     CommandItem,
     CommandList,
 } from '@/components/ui/command.tsx';
@@ -24,50 +14,60 @@ import {
     PopoverTrigger,
 } from '@/components/ui/popover.tsx';
 import { useTranslation } from 'react-i18next';
+import { Badge } from '@/components/ui/badge.tsx';
+import { useMemo } from 'react';
+import { TaskStatus } from '@/lib/types/TaskDto.ts';
 
-type Status = {
+export type Status = {
     value: string;
-    label: string;
-    icon: LucideIcon;
+    color: string;
 };
 
 const statuses: Status[] = [
     {
-        value: 'backlog',
-        label: 'Backlog',
-        icon: HelpCircle,
+        value: TaskStatus.TODO,
+        color: 'bg-blue-500',
     },
     {
-        value: 'todo',
-        label: 'Todo',
-        icon: Circle,
+        value: TaskStatus.IN_PROGRESS,
+        color: 'bg-yellow-500',
     },
     {
-        value: 'in progress',
-        label: 'In Progress',
-        icon: ArrowUpCircle,
+        value: TaskStatus.COMPLETED,
+        color: 'bg-green-500',
     },
     {
-        value: 'done',
-        label: 'Done',
-        icon: CheckCircle2,
-    },
-    {
-        value: 'canceled',
-        label: 'Canceled',
-        icon: XCircle,
+        value: TaskStatus.CANCELLED,
+        color: 'bg-red-500',
     },
 ];
 
-interface TaskStatusSelectProps {}
+interface TaskStatusSelectProps {
+    selectedStatus: TaskStatus;
+    setSelectedStatus: (...event: unknown[]) => void;
+}
 
-export function TaskStatusSelect({}: TaskStatusSelectProps) {
+export function TaskStatusSelect({
+    selectedStatus,
+    setSelectedStatus,
+}: TaskStatusSelectProps) {
     const [open, setOpen] = React.useState(false);
-    const [selectedStatus, setSelectedStatus] = React.useState<Status | null>(
-        null
-    );
     const { t } = useTranslation();
-
+    const statusColor = useMemo(() => {
+        switch (selectedStatus) {
+            case TaskStatus.TODO:
+                return 'bg-blue-500';
+            case TaskStatus.IN_PROGRESS:
+                return 'bg-yellow-500';
+            case TaskStatus.COMPLETED:
+                return 'bg-green-500';
+            case TaskStatus.CANCELLED:
+                return 'bg-red-500';
+            default:
+                return '';
+        }
+    }, [selectedStatus]);
+    console.log('stattus', selectedStatus);
     return (
         <div className="flex items-center space-x-4">
             <Popover open={open} onOpenChange={setOpen}>
@@ -77,18 +77,19 @@ export function TaskStatusSelect({}: TaskStatusSelectProps) {
                         size="sm"
                         className="w-[150px] justify-start">
                         {selectedStatus ? (
-                            <>
-                                <selectedStatus.icon className="mr-2 h-4 w-4 shrink-0" />
-                                {selectedStatus.label}
-                            </>
+                            <Badge className="flex w-full gap-2">
+                                <div
+                                    className={`size-3 rounded-3xl ${statusColor}`}
+                                />
+                                {t(`task.status.${selectedStatus}`)}
+                            </Badge>
                         ) : (
                             `+ ${t('task.setStatus')}`
                         )}
                     </Button>
                 </PopoverTrigger>
-                <PopoverContent className="p-0" side="right" align="start">
+                <PopoverContent className="p-0" side="bottom" align="start">
                     <Command>
-                        <CommandInput placeholder="Change status..." />
                         <CommandList>
                             <CommandEmpty>No results found.</CommandEmpty>
                             <CommandGroup>
@@ -105,16 +106,12 @@ export function TaskStatusSelect({}: TaskStatusSelectProps) {
                                             );
                                             setOpen(false);
                                         }}>
-                                        <status.icon
-                                            className={cn(
-                                                'mr-2 h-4 w-4',
-                                                status.value ===
-                                                    selectedStatus?.value
-                                                    ? 'opacity-100'
-                                                    : 'opacity-40'
-                                            )}
-                                        />
-                                        <span>{status.label}</span>
+                                        <Badge className="flex w-full gap-2">
+                                            <div
+                                                className={`size-3 rounded-3xl ${status.color}`}
+                                            />
+                                            {t(`task.status.${status.value}`)}
+                                        </Badge>
                                     </CommandItem>
                                 ))}
                             </CommandGroup>

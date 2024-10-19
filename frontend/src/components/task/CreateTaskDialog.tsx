@@ -30,7 +30,11 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog.tsx';
 
-import { TaskStatusSelect } from '@/components/task/TaskStatusSelect.tsx';
+import {
+    Status,
+    TaskStatusSelect,
+} from '@/components/task/TaskStatusSelect.tsx';
+import * as React from 'react';
 
 export default function CreateTaskDialog() {
     const { t } = useTranslation();
@@ -50,7 +54,6 @@ export default function CreateTaskDialog() {
     });
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values.status);
         try {
             await taskMutation.mutateAsync({
                 name: values.name,
@@ -59,9 +62,10 @@ export default function CreateTaskDialog() {
                     ? formatISO(values.start_date)
                     : null,
                 end_date: values.end_date ? formatISO(values.end_date) : null,
-                status: TaskStatus.CANCELLED,
+                status: values.status,
                 tags: [],
             });
+            taskForm.reset();
         } catch (error) {
             console.log(error);
         }
@@ -160,14 +164,19 @@ export default function CreateTaskDialog() {
                         <div className="flex w-full gap-4">
                             <FormField
                                 control={taskForm.control}
-                                name="tags"
+                                name="status"
                                 render={({ field }) => (
                                     <FormItem className="max-h-28 min-h-28 w-full">
                                         <FormLabel>
                                             {t('task.statusText')}
                                         </FormLabel>
                                         <FormControl>
-                                            <TaskStatusSelect {...field} />
+                                            <TaskStatusSelect
+                                                selectedStatus={field.value}
+                                                setSelectedStatus={(status) =>
+                                                    field.onChange(status.value)
+                                                }
+                                            />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>

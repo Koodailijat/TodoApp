@@ -17,7 +17,7 @@
     },
     "task": {
         "status": {
-            "TODO": "tehtävä",
+            "TODO": "Tehtävä",
             "IN_PROGRESS": "Työn alla",
             "COMPLETED": "Tehty",
             "CANCELLED": "Peruttu"
