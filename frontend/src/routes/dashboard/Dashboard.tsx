@@ -17,13 +17,16 @@ export default function Dashboard() {
     return (
         <PageView>
             {tasksQuery.data.length > 0 && (
-                <ScrollArea className="max-h-[4/5] w-fit rounded-md border">
-                    <div className="flex flex-col gap-6 p-4">
-                        {tasksQuery.data.map((task) => {
-                            return <TaskCard key={task.id} {...task} />;
-                        })}
-                    </div>
-                </ScrollArea>
+                <>
+                    <h1 className="text-2xl">Current Tasks</h1>
+                    <ScrollArea className="h-4/5 max-h-[3/5] w-fit rounded-md border">
+                        <div className="flex flex-col gap-6 p-4">
+                            {tasksQuery.data.map((task) => {
+                                return <TaskCard key={task.id} {...task} />;
+                            })}
+                        </div>
+                    </ScrollArea>
+                </>
             )}
             <CreateTaskDialog />
         </PageView>

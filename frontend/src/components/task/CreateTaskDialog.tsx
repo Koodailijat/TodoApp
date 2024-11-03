@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formatISO } from 'date-fns';
+import React from 'react';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Textarea } from '@/components/ui/textarea.tsx';
@@ -20,7 +21,6 @@ import {
 import { TaskStatus } from '@/lib/types/TaskDto.ts';
 import {
     AlertDialog,
-    AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -30,8 +30,10 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog.tsx';
 import { TaskStatusSelect } from '@/components/task/TaskStatusSelect.tsx';
+import { toast } from '@/hooks/use-toast.ts';
 
 export default function CreateTaskDialog() {
+    const [isOpen, setIsOpen] = React.useState(false);
     const { t } = useTranslation();
     const taskMutation = useTaskCreateMutation();
     const formSchema = createTaskSchema();
@@ -61,15 +63,21 @@ export default function CreateTaskDialog() {
                 tags: [],
             });
             taskForm.reset();
+            setIsOpen(false);
+            toast({
+                title: 'Task created',
+            });
         } catch (error) {
             console.log(error);
         }
     }
 
     return (
-        <AlertDialog>
+        <AlertDialog open={isOpen} onOpenChange={() => setIsOpen(!isOpen)}>
             <AlertDialogTrigger asChild>
-                <Button className="w-fit">{t('task.addNew')}</Button>
+                <Button className="w-fit" onClick={() => setIsOpen(true)}>
+                    {t('task.addNew')}
+                </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
@@ -182,9 +190,7 @@ export default function CreateTaskDialog() {
                             <AlertDialogCancel onClick={() => taskForm.reset()}>
                                 {t('menu.cancel')}
                             </AlertDialogCancel>
-                            <AlertDialogAction type="submit">
-                                {t('task.addNew')}
-                            </AlertDialogAction>
+                            <Button type="submit">{t('task.addNew')}</Button>
                         </AlertDialogFooter>
                     </form>
                 </Form>

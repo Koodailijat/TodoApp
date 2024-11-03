@@ -11,7 +11,7 @@ export default function PageView({ children }: PageViewProps) {
     return (
         <div className="size-full bg-background">
             <div
-                className={`${isOpenStyle} flex h-screen flex-col gap-4 bg-background p-6`}>
+                className={`${isOpenStyle} flex h-screen flex-col gap-4 bg-background p-8`}>
                 {children}
             </div>
         </div>

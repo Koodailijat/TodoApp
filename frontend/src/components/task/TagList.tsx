@@ -1,8 +1,9 @@
-import { Plus, PlusIcon, Tags } from 'lucide-react';
+import { PlusIcon, Tags } from 'lucide-react';
+import React from 'react';
 import { Tag } from '@/lib/types/TaskDto.ts';
 import { Badge } from '@/components/ui/badge.tsx';
 import { Button } from '@/components/ui/button.tsx';
-import React from 'react';
+import TooltipHelper from '@/lib/TooltipHelper.tsx';
 
 interface TagListProps {
     tags: Array<Tag>;
@@ -11,6 +12,10 @@ interface TagListProps {
 export default function TagList({ tags }: TagListProps) {
     const [isTagsExpanded, setIsTagsExpanded] = React.useState(false);
     const tagLength = tags.length;
+
+    if (tagLength === 0) {
+        return <div />;
+    }
 
     if (isTagsExpanded) {
         return (
@@ -44,12 +49,17 @@ export default function TagList({ tags }: TagListProps) {
                             <Badge key={tag.id}>{tag.name}</Badge>
                         ))}
                     </div>
-                    <Button
-                        className="flex h-6 w-8 gap-1 rounded-full p-1"
-                        onClick={() => setIsTagsExpanded(true)}>
-                        <p className="text-xs">{tags.length - 3}</p>
-                        <PlusIcon width={10} height={10} />
-                    </Button>
+                    <TooltipHelper
+                        tooltip={tags.slice(3).map((tag: Tag) => (
+                            <p key={tag.id}>{tag.name}</p>
+                        ))}>
+                        <Button
+                            className="flex h-6 w-8 gap-1 rounded-full p-1"
+                            onClick={() => setIsTagsExpanded(true)}>
+                            <p className="text-xs">{tags.length - 3}</p>
+                            <PlusIcon width={10} height={10} />
+                        </Button>
+                    </TooltipHelper>
                 </>
             )}
         </div>

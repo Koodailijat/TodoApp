@@ -11,6 +11,7 @@ import LoginUsername from '@/routes/login/loginusername/LoginUsername.tsx';
 import SignUp from '@/routes/signup/SignUp.tsx';
 import Dashboard from '@/routes/dashboard/Dashboard.tsx';
 import { queryClient } from '@/queries/queryClient.ts';
+import { Toaster } from '@/components/ui/toaster.tsx';
 
 const router = createBrowserRouter([
     {
@@ -59,5 +60,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+        <Toaster />
     </QueryClientProvider>
 );
