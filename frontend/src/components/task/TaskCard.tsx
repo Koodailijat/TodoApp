@@ -6,6 +6,7 @@ import { Separator } from '@/components/ui/separator.tsx';
 import { TaskStatusBadge } from '@/components/task/TaskStatusBadge.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { useTaskDeleteMutation } from '@/queries/taskQueries.tsx';
+import TagList from '@/components/task/TagList.tsx';
 
 interface TaskCardProps extends TaskOutputDto {}
 
@@ -34,23 +35,14 @@ export default function TaskCard({
                 <h2 className="text-xl">{name}</h2>
                 <TaskStatusBadge status={status} />
             </div>
-            <div className="">
-                <p>{description}</p>
-            </div>
+            {description && (
+                <div className="">
+                    <p>{description}</p>
+                </div>
+            )}
             <Separator />
             <div className="flex items-center justify-between gap-4">
-                <div>
-                    {tags.length > 0 && (
-                        <>
-                            <Tags />
-                            <div className="flex gap-1">
-                                {tags.map((tag: Tag) => (
-                                    <Badge key={tag.id}>{tag.name}</Badge>
-                                ))}
-                            </div>
-                        </>
-                    )}
-                </div>
+                <TagList tags={tags} />
                 <Button
                     variant="destructive"
                     size="icon"

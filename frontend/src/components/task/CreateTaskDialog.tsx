@@ -29,12 +29,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog.tsx';
-
-import {
-    Status,
-    TaskStatusSelect,
-} from '@/components/task/TaskStatusSelect.tsx';
-import * as React from 'react';
+import { TaskStatusSelect } from '@/components/task/TaskStatusSelect.tsx';
 
 export default function CreateTaskDialog() {
     const { t } = useTranslation();
@@ -133,7 +128,7 @@ export default function CreateTaskDialog() {
                                         <FormControl>
                                             <SelectDate
                                                 label={t('task.startDate')}
-                                                date={field.value}
+                                                date={field.value as Date}
                                                 setDate={field.onChange}
                                             />
                                         </FormControl>
@@ -152,7 +147,7 @@ export default function CreateTaskDialog() {
                                         <FormControl>
                                             <SelectDate
                                                 label={t('task.endDate')}
-                                                date={field.value}
+                                                date={field.value as Date}
                                                 setDate={field.onChange}
                                             />
                                         </FormControl>

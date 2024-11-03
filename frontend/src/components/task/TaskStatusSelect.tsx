@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { LucideIcon } from 'lucide-react';
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button.tsx';
 import {
     Command,
@@ -13,9 +14,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from '@/components/ui/popover.tsx';
-import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge.tsx';
-import { useMemo } from 'react';
 import { TaskStatus } from '@/lib/types/TaskDto.ts';
 
 export type Status = {
@@ -44,7 +43,7 @@ const statuses: Status[] = [
 
 interface TaskStatusSelectProps {
     selectedStatus: TaskStatus;
-    setSelectedStatus: (...event: unknown[]) => void;
+    setSelectedStatus: (...event: any[]) => void;
 }
 
 export function TaskStatusSelect({
@@ -67,7 +66,7 @@ export function TaskStatusSelect({
                 return '';
         }
     }, [selectedStatus]);
-    console.log('stattus', selectedStatus);
+
     return (
         <div className="flex items-center space-x-4">
             <Popover open={open} onOpenChange={setOpen}>
