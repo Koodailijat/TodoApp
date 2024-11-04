@@ -25,7 +25,7 @@ export async function postTaskRequest(
     });
 }
 
-export async function deleteTaskRequest(values): Promise<void> {
+export async function deleteTaskRequest(values: { id: string }): Promise<void> {
     return authRequest({
         method: 'DELETE',
         url: `task/${values.id}`,

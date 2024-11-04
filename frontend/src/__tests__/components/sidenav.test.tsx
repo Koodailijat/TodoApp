@@ -42,8 +42,8 @@ describe('SideNav', () => {
     });
 
     it('Should collapse navbar and display only icons', async () => {
-        let loggedIn = false;
-        let isOpen = false;
+        const loggedIn = false;
+        const isOpen = false;
 
         const { container } = WrapWithRouterAndContext({
             children: <SideNav />,

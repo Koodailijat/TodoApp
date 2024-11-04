@@ -20,7 +20,7 @@ import { IconField } from '@/components/iconfield/IconField.tsx';
 import { useLoginMutation } from '@/queries/authQueries.tsx';
 import { UserContext } from '@/routes/root/Root.tsx';
 
-export default function LoginUsername() {
+export function LoginUsername() {
     const enteredUsername = useLocation().state.values.username;
     const [username] = useState<string>(enteredUsername);
     const { setLoggedIn } = useContext(UserContext);
@@ -44,6 +44,7 @@ export default function LoginUsername() {
             });
             navigate('/');
             setLoggedIn(true);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
             loginForm.setError('password', {
                 type: 'custom',

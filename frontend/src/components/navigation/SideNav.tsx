@@ -15,7 +15,7 @@ import LoggedInSideNav from '@/components/navigation/LoggedInSideNav.tsx';
 import NotLoggedInSideNav from '@/components/navigation/NotLoggedInSideNav.tsx';
 import ThemeSwitcher from '@/components/navigation/ThemeSwitcher.tsx';
 
-export default function SideNav() {
+export function SideNav() {
     const { isOpen, setIsOpen } = useContext(NavBarContext);
     const isOpenStyling = isOpen
         ? 'w-60 p-2 aria-expanded:true'
