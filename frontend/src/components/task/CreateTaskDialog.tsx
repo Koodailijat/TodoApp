@@ -67,6 +67,7 @@ export default function CreateTaskDialog() {
             toast({
                 title: 'Task created',
             });
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
             /* empty */
         }

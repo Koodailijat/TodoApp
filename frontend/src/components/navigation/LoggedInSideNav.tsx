@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import TooltipHelper from '@/lib/TooltipHelper.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import { storageKeys } from '@/constants/storageKeys.ts';
-import { UserContext } from '@/routes/root/Root.tsx';
 import { queryClient } from '@/queries/queryClient.ts';
+import { UserContext } from '@/context/userContext.ts';
 
 interface LoggedInSideNavProps {
     isOpen: boolean;

@@ -1,10 +1,12 @@
 import { BrowserRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import { NavBarContext, UserContext } from '@/routes/root/Root';
 import './i18nextMock.ts';
+import { ReactNode } from 'react';
+import { UserContext } from '@/context/userContext.ts';
+import { NavBarContext } from '@/context/navBarContext.ts';
 
 interface WrapWithRouterAndContextProps {
-    children: any;
+    children: ReactNode;
     isOpen: boolean;
     loggedIn: boolean;
 }

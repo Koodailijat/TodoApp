@@ -16,7 +16,6 @@ authInstance.interceptors.request.use(
     (axiosRequest) => {
         const accessToken = localStorage.getItem(storageKeys.accessToken);
         if (accessToken) {
-            // eslint-disable-next-line no-param-reassign
             axiosRequest.headers.Authorization = `Bearer ${accessToken}`;
         }
         return axiosRequest;

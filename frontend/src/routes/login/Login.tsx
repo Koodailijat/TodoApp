@@ -18,7 +18,7 @@ import {
 import { usernameSchema } from '@/lib/schemas/authFormSchema.ts';
 import { IconField } from '@/components/iconfield/IconField.tsx';
 
-export default function Login() {
+export function Login() {
     const navigate = useNavigate();
     const formSchema = usernameSchema();
 

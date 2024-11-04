@@ -1,14 +1,12 @@
 import { Trash2 } from 'lucide-react';
 import { format } from 'date-fns';
-import { TaskOutputDto } from '@/lib/types/TaskDto.ts';
+import { TaskOutputDto as TaskCardProps } from '@/lib/types/TaskDto.ts';
 import { Card } from '@/components/ui/card.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import { TaskStatusBadge } from '@/components/task/TaskStatusBadge.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { useTaskDeleteMutation } from '@/queries/taskQueries.tsx';
 import TagList from '@/components/task/TagList.tsx';
-
-interface TaskCardProps extends TaskOutputDto {}
 
 export default function TaskCard({
     id,
@@ -24,6 +22,7 @@ export default function TaskCard({
     async function deleteTask() {
         try {
             await deleteTaskMutation.mutateAsync({ id });
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
             /* empty */
         }

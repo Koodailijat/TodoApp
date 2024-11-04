@@ -34,7 +34,7 @@ export function useTaskDeleteMutation() {
     return useMutation({
         mutationFn: deleteTaskRequest,
         mutationKey: [queryKeys.task],
-        onSuccess: (data, variables) => {
+        onSuccess: (_data, variables) => {
             queryClient.setQueryData(
                 [queryKeys.task],
                 (oldData: Array<TaskOutputDto>) => {

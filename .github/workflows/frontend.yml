@@ -22,12 +22,9 @@ jobs:
   # ESLINT JOB
   lint:
     runs-on: ubuntu-latest
-    defaults:
-        run:
-          working-directory: './frontend'
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: yarn
+        run: npm ci
       - name: Lint
-        run: yarn lint
+        run: npm run lint

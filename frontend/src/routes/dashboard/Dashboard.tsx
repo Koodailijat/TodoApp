@@ -4,7 +4,7 @@ import TaskCard from '@/components/task/TaskCard.tsx';
 import CreateTaskDialog from '@/components/task/CreateTaskDialog.tsx';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
 
-export default function Dashboard() {
+export function Dashboard() {
     const tasksQuery = useTasksQuery();
 
     if (tasksQuery.isPending) {
