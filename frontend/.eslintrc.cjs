@@ -35,15 +35,15 @@ module.exports = {
     rules: {
         'react/react-in-jsx-scope': 'off',
         'linebreak-style': ['error', 'windows'],
-        'indent': ['error', 4],
+        'indent': ['error', 4, { "SwitchCase": 1 }],
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
         'import/no-extraneous-dependencies': ["error", {"devDependencies": true}],
         "import/extensions": [ "error", "ignorePackages", { "": "never" } ],
         "react/jsx-props-no-spreading": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
     },
-    ignorePatterns: ["src/__tests__/*", "src/components/ui/*", "*.config.js"], // <<< ignore all files in test folder
+    ignorePatterns: ["src/__tests__/*", "src/components/ui/*", "*.config.js", "use-toast.ts"], // <<< ignore all files in test folder
     globals: {
         "vitest": true
     },

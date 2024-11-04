@@ -104,7 +104,7 @@ export default function LoginUsername() {
                             <Button className="m-2 w-full" type="submit">
                                 Login
                             </Button>
-                        </form>{' '}
+                        </form>
                     </Form>
                 </div>
             </div>

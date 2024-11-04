@@ -6,6 +6,7 @@ import {
     ListTodo,
 } from 'lucide-react';
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button.tsx';
 import { NavBarContext, UserContext } from '@/routes/root/Root.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
@@ -20,6 +21,7 @@ export default function SideNav() {
         ? 'w-60 p-2 aria-expanded:true'
         : 'w-20 p-2 aria-expanded:false';
     const { loggedIn } = useContext(UserContext);
+    const { t } = useTranslation();
 
     return (
         <div
@@ -27,9 +29,15 @@ export default function SideNav() {
             <div
                 className={`flex w-full ${isOpen ? 'justify-end' : 'justify-center'}`}>
                 <TooltipHelper
-                    tooltip={isOpen ? <p>Collapse</p> : <p>Expand</p>}>
+                    tooltip={
+                        isOpen ? (
+                            <p>{t('menu.collapse')}</p>
+                        ) : (
+                            <p>{t('menu.expand')}</p>
+                        )
+                    }>
                     <Button
-                        aria-label="Toggle navigation"
+                        aria-label={t('menu.toggleNavigation')}
                         className="bg-secondary text-primary hover:bg-primary hover:text-secondary"
                         onClick={() => setIsOpen(!isOpen)}>
                         {isOpen ? <ArrowLeftToLine /> : <ArrowRightToLine />}
@@ -43,12 +51,12 @@ export default function SideNav() {
             <Separator className="bg-gray-400" />
             <div className="flex w-full flex-col gap-4 text-center">
                 <div className="flex items-center justify-center gap-2">
-                    <TooltipHelper tooltip={<p>Home</p>}>
+                    <TooltipHelper tooltip={<p>{t('menu.home')}</p>}>
                         <Link
                             className="flex w-8/12 items-center justify-center gap-2 rounded-lg p-2 hover:bg-primary hover:text-secondary"
                             to="/">
                             <Home />
-                            {isOpen ? 'Home' : ''}
+                            {isOpen ? t('menu.home') : ''}
                         </Link>
                     </TooltipHelper>
                 </div>
@@ -59,6 +67,7 @@ export default function SideNav() {
                     <LoggedInSideNav isOpen={isOpen} />
                 )}
             </div>
+
             <ThemeSwitcher isOpen={isOpen} />
         </div>
     );

@@ -13,9 +13,9 @@ describe('SideNav', () => {
             loggedIn,
         });
         expect(screen.getByRole('heading', { name: 'Todo App' })).toBeDefined();
-        expect(screen.getByRole('link', { name: 'Home' })).toBeDefined();
-        expect(screen.getByRole('link', { name: 'Login' })).toBeDefined();
-        expect(screen.getByRole('link', { name: 'Sign Up' })).toBeDefined();
+        expect(screen.getByRole('link', { name: 'menu.home' })).toBeDefined();
+        expect(screen.getByRole('link', { name: 'menu.login' })).toBeDefined();
+        expect(screen.getByRole('link', { name: 'menu.signup' })).toBeDefined();
     });
 
     it('Should render right elements when user is logged in', () => {
@@ -28,11 +28,17 @@ describe('SideNav', () => {
             loggedIn,
         });
         expect(screen.getByRole('heading', { name: 'Todo App' })).toBeDefined();
-        expect(screen.getByRole('link', { name: 'Home' })).toBeDefined();
-        expect(screen.getByRole('link', { name: 'Dashboard' })).toBeDefined();
-        expect(screen.getByRole('link', { name: 'Profile' })).toBeDefined();
-        expect(screen.getByRole('link', { name: 'Reminders' })).toBeDefined();
-        expect(screen.getByRole('link', { name: 'Logout' })).toBeDefined();
+        expect(screen.getByRole('link', { name: 'menu.home' })).toBeDefined();
+        expect(
+            screen.getByRole('link', { name: 'menu.dashboard' })
+        ).toBeDefined();
+        expect(
+            screen.getByRole('link', { name: 'menu.profile' })
+        ).toBeDefined();
+        expect(
+            screen.getByRole('link', { name: 'menu.reminders' })
+        ).toBeDefined();
+        expect(screen.getByRole('link', { name: 'menu.logout' })).toBeDefined();
     });
 
     it('Should collapse navbar and display only icons', async () => {

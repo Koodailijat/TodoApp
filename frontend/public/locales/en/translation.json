@@ -1,0 +1,33 @@
+{
+    "menu": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "profile": "Profile",
+        "reminders": "Reminders",
+        "logout": "Logout",
+        "login": "Login",
+        "signup": "Sign Up",
+        "switchToDarkMode": "Switch to dark mode",
+        "switchToLightMode": "Switch to light mode",
+        "collapse": "Collapse",
+        "expand": "Expand",
+        "toggleNavigation": "Toggle navigation",
+        "cancel": "Cancel",
+        "add": "Add"
+    },
+    "task": {
+        "status": {
+            "TODO": "Todo",
+            "IN_PROGRESS": "In progress",
+            "COMPLETED": "Completed",
+            "CANCELLED": "Cancelled"
+        },
+        "statusText": "Status",
+        "setStatus": "Set Status",
+        "addNew": "Add a new task",
+        "name": "Name",
+        "description": "Description",
+        "startDate": "Start date",
+        "endDate": "End date"
+    }
+}

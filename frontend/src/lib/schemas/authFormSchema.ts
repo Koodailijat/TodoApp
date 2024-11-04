@@ -3,7 +3,7 @@ import { z } from 'zod';
 export function loginUsernameSchema() {
     return z.object({
         username: z.string().min(2, { message: 'Username is invalid' }),
-        password: z.string().min(8, { message: 'Password is invalid' }),
+        password: z.string().min(0, { message: 'Password is invalid' }),
     });
 }
 
@@ -46,10 +46,6 @@ export function signUpSchema() {
                 })
                 .max(32, {
                     message: 'Password must be shorter than 32 characters',
-                })
-                .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]$/, {
-                    message:
-                        'Password must contain at least one capitalized letter and one number',
                 }),
             confirmPassword: z.string(),
         })

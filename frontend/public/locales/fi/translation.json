@@ -1,0 +1,33 @@
+{
+    "menu": {
+        "home": "Koti",
+        "dashboard": "Työpöytä",
+        "profile": "Profiili",
+        "reminders": "Muistutukset",
+        "logout": "Kirjaudu ulos",
+        "login": "Kirjaudu sisään",
+        "signup": "Rekisteröidy",
+        "switchToDarkMode": "Vaihda tummaan tilaan",
+        "switchToLightMode": "Vaihda vaaleaan tilaan",
+        "collapse": "Pienennä",
+        "expand": "Suurenna",
+        "toggleNavigation": "Vaihda navigaation tilaa",
+        "cancel": "Peru",
+        "add": "Lisää"
+    },
+    "task": {
+        "status": {
+            "TODO": "Tehtävä",
+            "IN_PROGRESS": "Työn alla",
+            "COMPLETED": "Tehty",
+            "CANCELLED": "Peruttu"
+        },
+        "statusText": "Tila",
+        "setStatus": "Aseta tila",
+        "addNew": "Lisää uusi tehtävä",
+        "name": "Nimi",
+        "description": "Kuvaus",
+        "startDate": "Aloituspäivämäärä",
+        "endDate": "Lopetuspäivämäärä"
+    }
+}
