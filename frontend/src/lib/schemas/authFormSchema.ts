@@ -47,10 +47,6 @@ export function signUpSchema() {
                 .max(32, {
                     message: 'Password must be shorter than 32 characters',
                 }),
-            //.regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]$/, {
-            //    message:
-            //        'Password must contain at least one capitalized letter and one number',
-            //}),
             confirmPassword: z.string(),
         })
         .superRefine(({ password, confirmPassword }, ctx) => {
