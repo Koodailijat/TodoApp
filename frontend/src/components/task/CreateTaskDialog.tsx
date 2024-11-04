@@ -68,8 +68,7 @@ export default function CreateTaskDialog() {
                 title: 'Task created',
             });
         } catch (error) {
-            /* eslint-disable no-console */
-            console.log(error);
+            /* empty */
         }
     }
 

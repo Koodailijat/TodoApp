@@ -25,8 +25,7 @@ export default function TaskCard({
         try {
             await deleteTaskMutation.mutateAsync({ id });
         } catch (error) {
-            /* eslint-disable no-console */
-            console.log(error);
+            /* empty */
         }
     }
 
