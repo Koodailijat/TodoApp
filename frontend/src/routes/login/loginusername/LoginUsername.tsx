@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/form.tsx';
 import { IconField } from '@/components/iconfield/IconField.tsx';
 import { useLoginMutation } from '@/queries/authQueries.tsx';
-import { UserContext } from '@/routes/root/Root.tsx';
+import { UserContext } from '@/context/userContext.ts';
 
 export function LoginUsername() {
     const enteredUsername = useLocation().state.values.username;

@@ -7,14 +7,14 @@ Todo application Frontend
 ## Installation
 
 ```bash
-$ yarn install
+$ npm install
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ yarn dev
+$ npm run dev
 
 ```
 
@@ -22,6 +22,6 @@ $ yarn dev
 
 ```bash
 # run tests
-yarn test
+npm run test
 
 ```

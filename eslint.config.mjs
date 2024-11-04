@@ -3,7 +3,6 @@ import tseslint from 'typescript-eslint';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import tailwind from 'eslint-plugin-tailwindcss';
 
 export default [
     {ignores: ['**/dist', "frontend/src/components/ui", "**/.prettierrc.cjs", "frontend/tailwind.config.js", "frontend/src/hooks/use-toast.ts"]},
@@ -26,7 +25,6 @@ export default [
             'react-refresh/only-export-components': ['warn', {allowConstantExport: true}],
         },
     },
-    ...tailwind.configs["flat/recommended"],
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
     {

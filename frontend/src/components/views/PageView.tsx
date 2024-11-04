@@ -1,5 +1,5 @@
 import { ReactNode, useContext } from 'react';
-import { NavBarContext } from '@/routes/root/Root.tsx';
+import { NavBarContext } from '@/context/navBarContext.ts';
 
 interface PageViewProps {
     children: ReactNode;
