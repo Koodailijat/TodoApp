@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm
+        run: npm ci
       - name: Run Vitest
         run: npm run test
   # ESLINT JOB
