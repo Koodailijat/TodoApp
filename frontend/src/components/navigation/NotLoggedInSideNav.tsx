@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { LogIn, UserRoundPlus } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import TooltipHelper from '@/lib/TooltipHelper.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
-import { useTranslation } from 'react-i18next';
 
 interface NotLoggedInSideNavProps {
     isOpen: boolean;

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TaskStatus } from '@/lib/types/TaskDto.ts';
 import { Badge } from '@/components/ui/badge.tsx';
-import { useTranslation } from 'react-i18next';
 
 interface StatusBadgeProps {
     status: TaskStatus;

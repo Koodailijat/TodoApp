@@ -68,6 +68,7 @@ export default function CreateTaskDialog() {
                 title: 'Task created',
             });
         } catch (error) {
+            /* eslint-disable no-console */
             console.log(error);
         }
     }
@@ -177,7 +178,9 @@ export default function CreateTaskDialog() {
                                             <TaskStatusSelect
                                                 selectedStatus={field.value}
                                                 setSelectedStatus={(status) =>
-                                                    field.onChange(status.value)
+                                                    field.onChange(
+                                                        status!.value
+                                                    )
                                                 }
                                             />
                                         </FormControl>

@@ -43,7 +43,7 @@ const statuses: Status[] = [
 
 interface TaskStatusSelectProps {
     selectedStatus: TaskStatus;
-    setSelectedStatus: (...event: any[]) => void;
+    setSelectedStatus: (args: Status | undefined) => void;
 }
 
 export function TaskStatusSelect({
@@ -101,7 +101,7 @@ export function TaskStatusSelect({
                                                 statuses.find(
                                                     (priority) =>
                                                         priority.value === value
-                                                ) || null
+                                                )
                                             );
                                             setOpen(false);
                                         }}>

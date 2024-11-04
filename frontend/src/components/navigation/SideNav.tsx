@@ -6,6 +6,7 @@ import {
     ListTodo,
 } from 'lucide-react';
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button.tsx';
 import { NavBarContext, UserContext } from '@/routes/root/Root.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
@@ -13,7 +14,6 @@ import TooltipHelper from '@/lib/TooltipHelper.tsx';
 import LoggedInSideNav from '@/components/navigation/LoggedInSideNav.tsx';
 import NotLoggedInSideNav from '@/components/navigation/NotLoggedInSideNav.tsx';
 import ThemeSwitcher from '@/components/navigation/ThemeSwitcher.tsx';
-import { useTranslation } from 'react-i18next';
 
 export default function SideNav() {
     const { isOpen, setIsOpen } = useContext(NavBarContext);

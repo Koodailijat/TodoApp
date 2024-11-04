@@ -43,7 +43,7 @@ module.exports = {
         "react/jsx-props-no-spreading": "off",
         "import/prefer-default-export": "off",
     },
-    ignorePatterns: ["src/__tests__/*", "src/components/ui/*", "*.config.js"], // <<< ignore all files in test folder
+    ignorePatterns: ["src/__tests__/*", "src/components/ui/*", "*.config.js", "use-toast.ts"], // <<< ignore all files in test folder
     globals: {
         "vitest": true
     },
