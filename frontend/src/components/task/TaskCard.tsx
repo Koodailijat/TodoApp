@@ -29,7 +29,7 @@ export default function TaskCard({
     }
 
     return (
-        <Card className="flex w-96 flex-col gap-2 bg-secondary p-3">
+        <Card className="flex w-full flex-col gap-2 bg-secondary p-3 sm:w-96">
             <div className="flex justify-between">
                 <h2 className="text-xl">{name}</h2>
                 <TaskStatusBadge status={status} />

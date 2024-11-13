@@ -7,7 +7,7 @@ interface PageViewProps {
 
 export default function PageView({ children }: PageViewProps) {
     const { isOpen } = useContext(NavBarContext);
-    const isOpenStyle = isOpen ? 'ml-60' : 'ml-20';
+    const isOpenStyle = isOpen ? 'hidden sm:block ml-60' : 'ml-20';
     return (
         <div className="size-full bg-background">
             <div

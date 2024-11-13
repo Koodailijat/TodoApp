@@ -19,7 +19,7 @@ export default function TagList({ tags }: TagListProps) {
 
     if (isTagsExpanded) {
         return (
-            <div className="flex items-center gap-2">
+            <div className="flex w-3/5 items-center gap-2">
                 <Tags />
                 <div className="grid grid-cols-3 items-center gap-2">
                     {tags.map((tag: Tag) => (
@@ -35,31 +35,57 @@ export default function TagList({ tags }: TagListProps) {
             {tagLength <= 3 ? (
                 <>
                     <Tags />
-                    <div className="flex gap-1">
+                    <div className="hidden sm:flex sm:gap-1">
                         {tags.map((tag: Tag) => (
                             <Badge key={tag.id}>{tag.name}</Badge>
                         ))}
                     </div>
-                </>
-            ) : (
-                <>
-                    <Tags />
-                    <div className="flex gap-1">
-                        {tags.slice(0, 3).map((tag: Tag) => (
-                            <Badge key={tag.id}>{tag.name}</Badge>
-                        ))}
-                    </div>
                     <TooltipHelper
-                        tooltip={tags.slice(3).map((tag: Tag) => (
+                        className="flex sm:hidden"
+                        tooltip={tags.map((tag: Tag) => (
                             <p key={tag.id}>{tag.name}</p>
                         ))}>
-                        <Button
-                            className="flex h-6 w-8 gap-1 rounded-full p-1"
-                            onClick={() => setIsTagsExpanded(true)}>
-                            <p className="text-xs">{tags.length - 3}</p>
+                        <Button className="flex h-6 w-8 gap-1 rounded-full p-1">
+                            <p className="text-xs">{tags.length}</p>
                             <PlusIcon width={10} height={10} />
                         </Button>
                     </TooltipHelper>
+                </>
+            ) : (
+                <>
+                    <div className="hidden sm:flex sm:gap-2">
+                        <Tags />
+                        <div className="flex gap-1">
+                            {tags.slice(0, 3).map((tag: Tag) => (
+                                <Badge key={tag.id}>{tag.name}</Badge>
+                            ))}
+                        </div>
+                        <TooltipHelper
+                            className="hidden sm:flex"
+                            tooltip={tags.slice(3).map((tag: Tag) => (
+                                <p key={tag.id}>{tag.name}</p>
+                            ))}>
+                            <Button
+                                className="flex h-6 w-8 gap-1 rounded-full p-1"
+                                onClick={() => setIsTagsExpanded(true)}>
+                                <p className="text-xs">{tags.length - 3}</p>
+                                <PlusIcon width={10} height={10} />
+                            </Button>
+                        </TooltipHelper>
+                    </div>
+                    <div className="flex gap-2 sm:hidden">
+                        <Tags />
+                        <TooltipHelper
+                            className="hidden sm:block"
+                            tooltip={tags.map((tag: Tag) => (
+                                <p key={tag.id}>{tag.name}</p>
+                            ))}>
+                            <Button className="flex h-6 w-8 gap-1 rounded-full p-1">
+                                <p className="text-xs">{tags.length}</p>
+                                <PlusIcon width={10} height={10} />
+                            </Button>
+                        </TooltipHelper>
+                    </div>
                 </>
             )}
         </div>

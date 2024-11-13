@@ -19,7 +19,7 @@ import { UserContext } from '@/context/userContext.ts';
 export function SideNav() {
     const { isOpen, setIsOpen } = useContext(NavBarContext);
     const isOpenStyling = isOpen
-        ? 'w-60 p-2 aria-expanded:true'
+        ? 'size-full sm:w-60 p-2 aria-expanded:true'
         : 'w-20 p-2 aria-expanded:false';
     const { loggedIn } = useContext(UserContext);
     const { t } = useTranslation();

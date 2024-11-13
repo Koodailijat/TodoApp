@@ -8,17 +8,21 @@ import {
 
 interface TooltipHelperProps {
     children: ReactNode;
+    className?: string;
     tooltip: ReactNode;
 }
 
 export default function TooltipHelper({
     children,
+    className,
     tooltip,
 }: TooltipHelperProps) {
     return (
         <TooltipProvider>
             <Tooltip>
-                <TooltipTrigger asChild>{children}</TooltipTrigger>
+                <TooltipTrigger asChild className={className}>
+                    {children}
+                </TooltipTrigger>
                 <TooltipContent>{tooltip}</TooltipContent>
             </Tooltip>
         </TooltipProvider>

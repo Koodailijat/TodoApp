@@ -80,7 +80,7 @@ export default function CreateTaskDialog() {
                     {t('task.addNew')}
                 </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className="h-fit w-screen sm:h-fit sm:w-fit">
                 <AlertDialogHeader>
                     <AlertDialogTitle className="mb-4">
                         {t('task.addNew')}
@@ -90,7 +90,7 @@ export default function CreateTaskDialog() {
                 <Form {...taskForm}>
                     <form
                         onSubmit={taskForm.handleSubmit(onSubmit)}
-                        className="flex flex-col items-center justify-center gap-2">
+                        className="flex flex-col items-center justify-center gap-4 sm:gap-2">
                         <FormField
                             control={taskForm.control}
                             name="name"
@@ -111,7 +111,7 @@ export default function CreateTaskDialog() {
                             control={taskForm.control}
                             name="description"
                             render={({ field }) => (
-                                <FormItem className="max-h-28 min-h-28 w-full">
+                                <FormItem className="max-h-28 w-full">
                                     <FormLabel>
                                         {t('task.description')}
                                     </FormLabel>
@@ -125,12 +125,12 @@ export default function CreateTaskDialog() {
                                 </FormItem>
                             )}
                         />
-                        <div className="flex w-full gap-4">
+                        <div className="flex w-full flex-col gap-4 sm:flex-row">
                             <FormField
                                 control={taskForm.control}
                                 name="start_date"
                                 render={({ field }) => (
-                                    <FormItem className="max-h-28 min-h-28 w-full">
+                                    <FormItem className="max-h-28 w-full">
                                         <FormLabel>
                                             {t('task.startDate')}
                                         </FormLabel>
@@ -149,7 +149,7 @@ export default function CreateTaskDialog() {
                                 control={taskForm.control}
                                 name="end_date"
                                 render={({ field }) => (
-                                    <FormItem className="max-h-28 min-h-28 w-full">
+                                    <FormItem className="max-h-28 w-full">
                                         <FormLabel>
                                             {t('task.endDate')}
                                         </FormLabel>
@@ -165,31 +165,27 @@ export default function CreateTaskDialog() {
                                 )}
                             />
                         </div>
-                        <div className="flex w-full gap-4">
-                            <FormField
-                                control={taskForm.control}
-                                name="status"
-                                render={({ field }) => (
-                                    <FormItem className="max-h-28 min-h-28 w-full">
-                                        <FormLabel>
-                                            {t('task.statusText')}
-                                        </FormLabel>
-                                        <FormControl>
-                                            <TaskStatusSelect
-                                                selectedStatus={field.value}
-                                                setSelectedStatus={(status) =>
-                                                    field.onChange(
-                                                        status!.value
-                                                    )
-                                                }
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-                        <AlertDialogFooter>
+                        <FormField
+                            control={taskForm.control}
+                            name="status"
+                            render={({ field }) => (
+                                <FormItem className="max-h-28 w-full">
+                                    <FormLabel>
+                                        {t('task.statusText')}
+                                    </FormLabel>
+                                    <FormControl>
+                                        <TaskStatusSelect
+                                            selectedStatus={field.value}
+                                            setSelectedStatus={(status) =>
+                                                field.onChange(status!.value)
+                                            }
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <AlertDialogFooter className="w-full">
                             <AlertDialogCancel onClick={() => taskForm.reset()}>
                                 {t('menu.cancel')}
                             </AlertDialogCancel>
